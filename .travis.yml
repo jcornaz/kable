@@ -1,0 +1,16 @@
+language: java
+
+branches:
+  except:
+    - /^feature.*$/
+  
+jdk:
+  - openjdk7
+  - oraclejdk7
+  - oraclejdk8
+
+before_install:
+  - chmod +x gradlew
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
