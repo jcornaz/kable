@@ -5,7 +5,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.util.*
 
-class Base16Test {
+class HexadecimalTest {
 
     val rng = Random()
 
@@ -14,7 +14,7 @@ class Base16Test {
     @Test
     fun testEncodedFormat() {
         (1..1000).forEach {
-            assertTrue(Regex("^[0-9a-f]{32}$").matches(rng.nextByteArray(16).encodeToBase16()))
+            assertTrue(Regex("^[0-9a-f]{32}$").matches(rng.nextByteArray(16).encodeToHexadecimal()))
         }
     }
 
@@ -22,9 +22,9 @@ class Base16Test {
     fun testEncodeDecode() {
         (1..1000).forEach {
             val decoded: ByteArray = rng.nextByteArray(16)
-            val encoded: String = decoded.encodeToBase16()
+            val encoded: String = decoded.encodeToHexadecimal()
 
-            assertEquals(decoded.toList(), encoded.decodeFromBase16().toList())
+            assertEquals(decoded.toList(), encoded.decodeFromHexadecimal().toList())
         }
     }
 }
