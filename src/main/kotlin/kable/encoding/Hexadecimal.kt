@@ -10,20 +10,21 @@ object Hexadecimal : Base {
 
     override val symbolCount = 16
 
-    override fun get(value: Byte): Char = when (value) {
-        in 0..9 -> '0' + value.toInt()
-        in 10..15 -> 'a' + value.toInt() - 10
+    override fun get(value: Byte): Char = when {
+        value >= 0 && value < 10 -> '0' + value.toInt()
+        value >= 10 && value < 16 -> 'a' + value.toInt() - 10
         else -> throw IllegalArgumentException("$value cannot be converted in an hexadecimal char")
     }
 
-    override fun get(char: Char): Byte = when (char.toLowerCase()) {
-        in '0'..'9' -> char - '0'
-        in 'a'..'f' -> char.toLowerCase() - 'a' + 10
+    override fun get(char: Char): Byte = when {
+        char >= '0' && char <= '9' -> char - '0'
+        char >= 'a' && char <= 'f' -> char - 'a' + 10
+        char >= 'A' && char <= 'F' -> char - 'A' + 10
         else -> throw IllegalArgumentException("'$char' is not an hexadecimal char")
     }.toByte()
 
     override fun contains(char: Char): Boolean =
-            char in '0'..'9' || char.toLowerCase() in 'a'..'h'
+            (char >= '0' && char <= '9') || (char >= 'a' && char <= 'f') || (char >= 'A' && char <= 'F')
 }
 
 /**
