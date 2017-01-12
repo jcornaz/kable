@@ -6,4 +6,4 @@
 [![Issues](https://img.shields.io/github/issues/slimaku/kable.svg)](https://github.com/slimaku/kable/issues)
 [![Pull requests](https://img.shields.io/github/issues-pr/slimaku/kable.svg)](https://github.com/slimaku/kable/pulls)
 
-Bi dimensional maps and small commons tools and extensions functions for kotlin
+Bi dimensional maps for kotlin
