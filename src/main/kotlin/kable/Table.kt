@@ -1,4 +1,4 @@
-package kable.table
+package kable
 
 interface Table<R, C, V> {
 
@@ -24,10 +24,10 @@ interface Table<R, C, V> {
 
     fun plus(row: R, column: C, value: V): Table<R, C, V>
 
-    operator fun plus(entry: Table.Entry<R, C, V>): Table<R, C, V> =
+    operator fun plus(entry: Entry<R, C, V>): Table<R, C, V> =
             plus(entry.row, entry.column, entry.value)
 
-    operator fun plus(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V> =
+    operator fun plus(entries: Collection<Entry<R, C, V>>): Table<R, C, V> =
             entries.fold(this) { table, entry -> table + entry }
 
     operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V> =
@@ -36,7 +36,7 @@ interface Table<R, C, V> {
     fun minusRow(row: R): Table<R, C, V> = columns.fold(this) { table, column -> minus(row, column) }
     fun minusColumn(column: C): Table<R, C, V> = rows.fold(this) { table, row -> minus(row, column) }
     fun minus(row: R, column: C): Table<R, C, V>
-    operator fun minus(key: Key<R, C>): Table<R, C, V> = minus(key.row, key.column)
+    operator fun minus(key: Pair<R, C>): Table<R, C, V> = minus(key.first, key.second)
 
     operator fun iterator(): Iterator<Entry<R, C, V>> = entries.iterator()
 

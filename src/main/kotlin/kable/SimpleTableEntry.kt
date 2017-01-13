@@ -1,4 +1,4 @@
-package kable.table
+package kable
 
 data class SimpleTableEntry<out R, out C, out V>(
         override val row: R,

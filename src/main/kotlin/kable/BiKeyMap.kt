@@ -1,4 +1,4 @@
-package kable.table
+package kable
 
 data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
 
@@ -24,7 +24,7 @@ data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R
     override val columns by lazy { columnsMap.keys }
     override val values by lazy { map.values }
 
-    override val entries by lazy { map.map { tableEntry(it.key.first, it.key.second, it.value) }.toSet() }
+    override val entries by lazy { map.map { entry(it.key.first, it.key.second, it.value) }.toSet() }
 
     constructor(entries: Collection<Table.Entry<R, C, V>>) : this(
             entries.associate { (it.row to it.column) to it.value }
@@ -59,6 +59,6 @@ data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R
         val i = map.iterator()
 
         override fun hasNext() = i.hasNext()
-        override fun next() = i.next().let { tableEntry(it.key.first, it.key.second, it.value) }
+        override fun next() = i.next().let { entry(it.key.first, it.key.second, it.value) }
     }
 }
