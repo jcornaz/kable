@@ -14,26 +14,29 @@ fun <R, C, V> tableOf(entries: Collection<Table.Entry<R, C, V>>) = BiKeyMap(entr
 /** Create a table with the given entries */
 fun <R, C, V> tableOf(vararg entries: Table.Entry<R, C, V>) = tableOf(entries.toList())
 
+/** Return true if, and only if, the table contains the given row-column key pair */
+operator fun <R, C> Table<R, C, *>.contains(key: Pair<R, C>) = contains(key.first, key.second)
+
 /** Return a new table with the same entries plus the given new entry */
 operator fun <R, C, V> Table<R, C, V>.plus(entry: Table.Entry<R, C, V>): Table<R, C, V> =
         BiKeyMap(entries + entry)
 
 /** Return a new table with the same entries plus the given new entries */
 operator fun <R, C, V> Table<R, C, V>.plus(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V> =
-        BiKeyMap(this.entries + entries)
+        entries.fold(this) { table, entry -> table + entry }
 
 /** Return a new table with the same entries plus entries of the given table */
 operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V> =
-        BiKeyMap(entries + table.entries)
+        this + table.entries
 
 /** Return a new table with the same entries except the given row */
 fun <R, C, V> Table<R, C, V>.minusRow(row: R): Table<R, C, V> =
-        BiKeyMap(entries.filterNot { it.row == row })
+        if (!containsRow(row)) this else BiKeyMap(entries.filterNot { it.row == row })
 
 /** Return a new table with the same entries except the given column */
 fun <R, C, V> Table<R, C, V>.minusColumn(column: C): Table<R, C, V> =
-        BiKeyMap(entries.filterNot { it.column == column })
+        if (!containsColumn(column)) this else BiKeyMap(entries.filterNot { it.column == column })
 
 /** Return a new table with the same entries except the row-column pair */
 operator fun <R, C, V> Table<R, C, V>.minus(key: Pair<R, C>): Table<R, C, V> =
-        BiKeyMap(entries.filterNot { it.row == key.first && it.column == key.second })
+        if (key !in this) this else BiKeyMap(entries.filterNot { it.row == key.first && it.column == key.second })

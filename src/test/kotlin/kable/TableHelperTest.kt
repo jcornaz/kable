@@ -4,6 +4,7 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class TableHelperTest {
+
     @Test fun testPlus() {
         val table = tableOf(
                 entry('A', 1, "hello"),
@@ -13,6 +14,17 @@ class TableHelperTest {
 
         assertEquals(4, table.size)
         assertEquals("good", table['C', 4])
+    }
+
+    @Test fun testErase() {
+        val table = tableOf(
+                entry('A', 1, "hello"),
+                entry('B', 4, "world"),
+                entry('A', 4, "bye")
+        ) + entry('A', 4, "good")
+
+        assertEquals(3, table.size)
+        assertEquals("good", table['A', 4])
     }
 
     @Test fun testMinus() {
@@ -48,5 +60,17 @@ class TableHelperTest {
         assertEquals(1, table.size)
         assertFalse(table.containsColumn(4))
         assertNull(table['A', 4])
+    }
+
+    @Test fun testMinusWhenNotContained() {
+        val table = tableOf(
+                entry('A', 1, "hello"),
+                entry('B', 4, "world"),
+                entry('A', 4, "bye")
+        )
+
+        assertSame(table, table - ('B' to 1))
+        assertSame(table, table.minusRow('z'))
+        assertSame(table, table.minusColumn(0))
     }
 }
