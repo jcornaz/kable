@@ -2,7 +2,7 @@ package kable
 
 interface Table<R, C, V> {
 
-    val factory: TableFactory
+    val factory: Factory
 
     val size: Int
 
@@ -32,5 +32,9 @@ interface Table<R, C, V> {
         operator fun component1() = row
         operator fun component2() = column
         operator fun component3() = value
+    }
+
+    interface Factory {
+        fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V>
     }
 }

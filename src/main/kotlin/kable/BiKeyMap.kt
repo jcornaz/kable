@@ -2,7 +2,7 @@ package kable
 
 data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
 
-    companion object Factory : TableFactory {
+    companion object Factory : Table.Factory {
         override fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>) = BiKeyMap(entries)
     }
 
