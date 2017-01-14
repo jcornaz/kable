@@ -13,6 +13,7 @@ Bi dimensional maps for kotlin (and java)
 The goal is to provide a "table" data structure. A table is almost like a map in java. But with a table, values does not have a "key". Instead they have a "row" and a "column".
 
 It's exactly the same concept as [guava](https://github.com/google/guava) [table](https://github.com/google/guava/wiki/NewCollectionTypesExplained#table). But :
+
 * You don't have to include the whole guava library
 * Tables provided by this project are immutable and even don't provide mutable method (guava immutable tables throw an exception when a mutable method is called)
 * This project is written in kotlin and provide useful functions, extension functions and operators that let you write nicer code
@@ -63,6 +64,7 @@ You need to use a jdk 6 or newer.
 You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable). You only need to add the dependency in your build file.
 
 Here is an example with Gradle :
+
 ```gradle
 repositories {
     mavenCentral()
