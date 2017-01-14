@@ -2,6 +2,8 @@ package kable
 
 interface Table<R, C, V> {
 
+    val factory: TableFactory
+
     val size: Int
 
     val rows: Set<R>
@@ -15,42 +17,20 @@ interface Table<R, C, V> {
     fun containsColumn(column: C): Boolean = column in columns
     fun containsValue(value: V): Boolean = value in values
     fun contains(row: R, column: C): Boolean = get(row, column) != null
-    operator fun contains(key: Key<R, C>): Boolean = contains(key.row, key.column)
 
     fun getRow(row: R): Map<C, V>
     fun getColumn(column: C): Map<R, V>
     operator fun get(row: R, column: C): V?
-    operator fun get(key: Key<R, C>) = get(key.row, key.column)
-
-    fun plus(row: R, column: C, value: V): Table<R, C, V>
-
-    operator fun plus(entry: Entry<R, C, V>): Table<R, C, V> =
-            plus(entry.row, entry.column, entry.value)
-
-    operator fun plus(entries: Collection<Entry<R, C, V>>): Table<R, C, V> =
-            entries.fold(this) { table, entry -> table + entry }
-
-    operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V> =
-            plus(table.entries)
-
-    fun minusRow(row: R): Table<R, C, V> = columns.fold(this) { table, column -> minus(row, column) }
-    fun minusColumn(column: C): Table<R, C, V> = rows.fold(this) { table, row -> minus(row, column) }
-    fun minus(row: R, column: C): Table<R, C, V>
-    operator fun minus(key: Pair<R, C>): Table<R, C, V> = minus(key.first, key.second)
 
     operator fun iterator(): Iterator<Entry<R, C, V>> = entries.iterator()
 
-    interface Key<out R, out C> {
+    interface Entry<out R, out C, out V> {
         val row: R
         val column: C
+        val value: V
 
         operator fun component1() = row
         operator fun component2() = column
-    }
-
-    interface Entry<out R, out C, out V> : Key<R, C> {
-        val value: V
-
         operator fun component3() = value
     }
 }

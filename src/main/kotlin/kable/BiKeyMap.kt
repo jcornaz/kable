@@ -2,6 +2,12 @@ package kable
 
 data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
 
+    companion object Factory : TableFactory {
+        override fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>) = BiKeyMap(entries)
+    }
+
+    override val factory = Factory
+
     override val size by lazy { map.size }
 
     val rowsMap by lazy {
@@ -39,21 +45,6 @@ data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R
 
     override fun get(row: R, column: C) = get(row to column)
     operator fun get(key: Pair<R, C>) = map[key]
-
-    override fun plus(row: R, column: C, value: V) =
-            BiKeyMap(map + ((row to column) to value))
-
-    override fun plus(entries: Collection<Table.Entry<R, C, V>>) =
-            BiKeyMap(map + entries.map { (it.row to it.column) to it.value })
-
-    override fun minusRow(row: R) =
-            if (row !in rows) this else BiKeyMap(map.filterKeys { it.first != row })
-
-    override fun minusColumn(column: C) =
-            if (column !in columns) this else BiKeyMap(map.filterKeys { it.second != column })
-
-    override fun minus(row: R, column: C) =
-            if (!contains(row, column)) this else BiKeyMap(map - (row to column))
 
     override fun iterator() = object : Iterator<Table.Entry<R, C, V>> {
         val i = map.iterator()
