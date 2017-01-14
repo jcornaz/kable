@@ -72,7 +72,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.slimaku:kable:master-SNAPSHOT'
+    compile 'com.github.slimaku:kable:1.0.0'
 }
 ```
 
