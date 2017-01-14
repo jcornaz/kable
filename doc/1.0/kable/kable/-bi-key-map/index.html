@@ -1,0 +1,196 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BiKeyMap - kable</title>
+<link rel="stylesheet" href="..\..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kable</a>&nbsp;/&nbsp;<a href="../index.html">kable</a>&nbsp;/&nbsp;<a href=".">BiKeyMap</a><br/>
+<br/>
+<h1>BiKeyMap</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">BiKeyMap</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Implementation of a <a href="../-table/index.html">Table</a> with</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-init-.html">&lt;init&gt;</a></td>
+<td>
+<code><span class="identifier">BiKeyMap</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$<init>(kotlin.collections.Collection((kable.Table.Entry((kable.BiKeyMap.R, kable.BiKeyMap.C, kable.BiKeyMap.V)))))/entries">entries</span><span class="symbol">:</span>&nbsp;<span class="identifier">Collection</span><span class="symbol">&lt;</span><a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span></code><code><span class="identifier">BiKeyMap</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$<init>(kotlin.collections.Map((kotlin.Pair((kable.BiKeyMap.R, kable.BiKeyMap.C)), kable.BiKeyMap.V)))/map">map</span><span class="symbol">:</span>&nbsp;<span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;emptyMap()<span class="symbol">)</span></code>
+<p>Implementation of a <a href="../-table/index.html">Table</a> with</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="columns.html">columns</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">columns</span><span class="symbol">: </span><span class="identifier">Set</span><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Columns that have at least one entry in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="columns-map.html">columnsMap</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">columnsMap</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Map of maps by columns, then by rows</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="entries.html">entries</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">entries</span><span class="symbol">: </span><span class="identifier">Set</span><span class="symbol">&lt;</span><a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Entries of the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="map.html">map</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">map</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="rows.html">rows</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">rows</span><span class="symbol">: </span><span class="identifier">Set</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code>
+<p>Rows that have at least one entry in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="rows-map.html">rowsMap</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">rowsMap</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Map of maps by rows, then by columns</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="size.html">size</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">size</span><span class="symbol">: </span><span class="identifier">Int</span></code>
+<p>Number of entries in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="values.html">values</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><span class="identifier">Collection</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Values containeds in the table</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="contains.html">contains</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$contains(kable.BiKeyMap.R, kable.BiKeyMap.C)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="kable.BiKeyMap$contains(kable.BiKeyMap.R, kable.BiKeyMap.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code>
+<p>Return true if, and only if, the table contains a value for the given row-column pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get.html">get</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$get(kable.BiKeyMap.R, kable.BiKeyMap.C)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="kable.BiKeyMap$get(kable.BiKeyMap.R, kable.BiKeyMap.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code>
+<p>Return the value at the specified row and column, or null if there is no value at this row-column pair</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$get(kotlin.Pair((kable.BiKeyMap.R, kable.BiKeyMap.C)))/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="get-column.html">getColumn</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getColumn</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$getColumn(kable.BiKeyMap.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return all the values of the columns mapped by row</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="get-row.html">getRow</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getRow</span><span class="symbol">(</span><span class="identifier" id="kable.BiKeyMap$getRow(kable.BiKeyMap.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return all the values of the row mapped by column</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="is-empty.html">isEmpty</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isEmpty</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code>
+<p>Return true if, and only if, the table has no entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="iterator.html">iterator</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Return an iterator over the entries</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../contains.html">contains</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="kable$contains(kable.Table((kable.contains.R, kable.contains.C, kotlin.Any)), kotlin.Pair((kable.contains.R, kable.contains.C)))/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code>
+<p>Return true if, and only if, the table contains the given row-column key pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../minus.html">minus</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minus</span><span class="symbol">(</span><span class="identifier" id="kable$minus(kable.Table((kable.minus.R, kable.minus.C, kable.minus.V)), kotlin.Pair((kable.minus.R, kable.minus.C)))/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the row-column pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../minus-column.html">minusColumn</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minusColumn</span><span class="symbol">(</span><span class="identifier" id="kable$minusColumn(kable.Table((kable.minusColumn.R, kable.minusColumn.C, kable.minusColumn.V)), kable.minusColumn.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the given column</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../minus-row.html">minusRow</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minusRow</span><span class="symbol">(</span><span class="identifier" id="kable$minusRow(kable.Table((kable.minusRow.R, kable.minusRow.C, kable.minusRow.V)), kable.minusRow.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the given row</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../plus.html">plus</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="kable$plus(kable.Table((kable.plus.R, kable.plus.C, kable.plus.V)), kable.Table.Entry((kable.plus.R, kable.plus.C, kable.plus.V)))/entry">entry</span><span class="symbol">:</span>&nbsp;<a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus the given new entry</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="kable$plus(kable.Table((kable.plus.R, kable.plus.C, kable.plus.V)), kotlin.collections.Collection((kable.Table.Entry((kable.plus.R, kable.plus.C, kable.plus.V)))))/entries">entries</span><span class="symbol">:</span>&nbsp;<span class="identifier">Collection</span><span class="symbol">&lt;</span><a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus the given new entries</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="kable$plus(kable.Table((kable.plus.R, kable.plus.C, kable.plus.V)), kable.Table((kable.plus.R, kable.plus.C, kable.plus.V)))/table">table</span><span class="symbol">:</span>&nbsp;<a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus entries of the given table</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
