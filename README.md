@@ -77,3 +77,6 @@ dependencies {
 ```
 
 You can also [use maven, sbt or leiningen](https://jitpack.io/#slimaku/kable).
+
+## Documentation
+[KDoc](https://slimaku.github.io/kable/doc/1.0/kable/kable/index.html)
