@@ -1,7 +1,11 @@
 package kable
 
+/**
+ * Implementation of a [Table] with
+ */
 data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
 
+    /** Factory to create [BiKeyMap] instances */
     companion object Factory : Table.Factory {
         override fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>) = BiKeyMap(entries)
     }
@@ -10,6 +14,7 @@ data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R
 
     override val size by lazy { map.size }
 
+    /** Map of maps by rows, then by columns */
     val rowsMap by lazy {
         map.entries.groupBy { it.key.first }.mapValues { entry ->
             entry.value.associate {
@@ -18,6 +23,7 @@ data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R
         }
     }
 
+    /** Map of maps by columns, then by rows */
     val columnsMap by lazy {
         map.entries.groupBy { it.key.second }.mapValues { entry ->
             entry.value.associate {
