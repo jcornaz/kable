@@ -5,9 +5,6 @@ package kable
  */
 interface Table<R, C, V> {
 
-    /** Factory to create new instance of the same implementation */
-    val factory: Factory
-
     /** Number of entries in the table */
     val size: Int
 
@@ -70,12 +67,5 @@ interface Table<R, C, V> {
 
         /** Value */
         operator fun component3() = value
-    }
-
-    /** Factory of table */
-    interface Factory {
-
-        /** Create a new table with the given entries */
-        fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V>
     }
 }

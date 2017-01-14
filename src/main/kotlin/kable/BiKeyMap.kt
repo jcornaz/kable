@@ -5,13 +5,6 @@ package kable
  */
 data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
 
-    /** Factory to create [BiKeyMap] instances */
-    companion object Factory : Table.Factory {
-        override fun <R, C, V> create(entries: Collection<Table.Entry<R, C, V>>) = BiKeyMap(entries)
-    }
-
-    override val factory = Factory
-
     override val size by lazy { map.size }
 
     /** Map of maps by rows, then by columns */
