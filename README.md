@@ -59,7 +59,7 @@ for ((row, column, value) in table)
 ```
 
 ## Add Kable to your project
-You need to use a jdk 6 or newer.
+You need to use a jdk 7 or newer.
 
 You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable). You only need to add the dependency in your build file.
 
@@ -72,7 +72,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.slimaku:kable:1.0.0'
+    compile 'com.github.slimaku:kable:v1.0.0'
 }
 ```
 
