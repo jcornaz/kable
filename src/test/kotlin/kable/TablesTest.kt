@@ -185,4 +185,88 @@ class TablesTest {
         assertEquals(entry('A', 1, "hello world"), table.minBy { it.column })
         assertEquals(entry('A', 4, "bye"), table.minWith(Comparator { o1, o2 -> o1.value.length - o2.value.length }))
     }
+
+    @Test fun testFilter() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val filtered: Table<Char, Int, String> = table.filter { (_, column, _) -> column > 3 }
+
+        assertEquals(expected, filtered)
+    }
+
+    @Test fun testFilterNot() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('A', 1, "hello world")
+        )
+
+        val filtered: Table<Char, Int, String> = table.filterNot { (_, column, _) -> column > 3 }
+
+        assertEquals(expected, filtered)
+    }
+
+    @Test fun testFilterRows() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('A', 1, "hello world"),
+                entry('A', 4, "bye")
+        )
+
+        val filtered: Table<Char, Int, String> = table.filterRows { it == 'A' }
+
+        assertEquals(expected, filtered)
+    }
+
+    @Test fun testFilterColumns() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val filtered: Table<Char, Int, String> = table.filterColumns { it == 4 }
+
+        assertEquals(expected, filtered)
+    }
+
+    @Test fun testFilterValues() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye")
+        )
+
+        val filtered: Table<Char, Int, String> = table.filterValues { it.length > 5 }
+
+        assertEquals(expected, filtered)
+    }
 }
