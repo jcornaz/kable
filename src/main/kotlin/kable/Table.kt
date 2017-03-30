@@ -3,7 +3,7 @@ package kable
 /**
  * A table is almost like a [Map] but, has two keys instead of one : the row and the column.
  */
-interface Table<R, C, V> {
+interface Table<R, C, out V> {
 
     /** Number of entries in the table */
     val size: Int
@@ -30,7 +30,7 @@ interface Table<R, C, V> {
     fun containsColumn(column: C): Boolean = column in columns
 
     /** Return true if, and only if, the table contains the given value */
-    fun containsValue(value: V): Boolean = value in values
+    fun containsValue(value: @UnsafeVariance V): Boolean = value in values
 
     /** Return true if, and only if, the table contains a value for the given row-column pair */
     fun contains(row: R, column: C): Boolean = get(row, column) != null

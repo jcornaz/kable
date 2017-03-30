@@ -5,10 +5,13 @@ package kable
 import java.util.*
 
 /** Create an empty table */
-fun <R, C, V> emptyTable(): Table<R, C, V> = BiKeyMap()
+fun <R, C, V> emptyTable(): Table<R, C, V> = @Suppress("UNCHECKED_CAST") (EmptyTable as Table<R, C, V>)
 
 /** Create a table entry with the given row, column and value */
 fun <R, C, V> entry(row: R, column: C, value: V): Table.Entry<R, C, V> = SimpleTableEntry(row, column, value)
+
+/** Create an empty table */
+fun <R, C, V> tableOf(): Table<R, C, V> = emptyTable()
 
 /** Create a table with the given entries */
 fun <R, C, V> tableOf(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V> =
