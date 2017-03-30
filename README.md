@@ -59,7 +59,7 @@ for ((row, column, value) in table)
 ```
 
 ## Add Kable to your project
-You need to use a jdk 7 or newer.
+You need to use a jdk 8 or newer.
 
 You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable). You only need to add the dependency in your build file.
 
