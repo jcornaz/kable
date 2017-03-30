@@ -14,8 +14,11 @@ fun <R, C, V> entry(row: R, column: C, value: V): Table.Entry<R, C, V> = SimpleT
 fun <R, C, V> tableOf(): Table<R, C, V> = emptyTable()
 
 /** Create a table with the given entries */
-fun <R, C, V> tableOf(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V> =
-        if (entries.size == 1) tableOf(entries.first()) else BiKeyMap(entries)
+fun <R, C, V> tableOf(entries: Collection<Table.Entry<R, C, V>>): Table<R, C, V> = when {
+    entries.isEmpty() -> emptyTable()
+    entries.size == 1 -> tableOf(entries.first())
+    else -> BiKeyMap(entries)
+}
 
 /** Create a singleton table with the given entry */
 fun <R, C, V> tableOf(entry: Table.Entry<R, C, V>): Table<R, C, V> = SingletonTable(entry)
