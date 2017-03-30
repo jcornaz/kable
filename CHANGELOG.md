@@ -6,6 +6,10 @@
     * `all` / `any` / `none`
     * `count`
     * `maxBy` / `maxWith` / `minBy` / `minWith`
+* `SingletonTable` class to handle more efficiently tables with only one entry
+
+### Changed
+* Now `tableOf()` return an instance of `SingletonTable` if possible
 
 ## 1.0.0 (2017-01-14)
 ### Added
