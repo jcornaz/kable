@@ -3,7 +3,7 @@ package kable
 /**
  * Implementation of a [Table] with
  */
-data class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : Table<R, C, V> {
+class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTable<R, C, V>() {
 
     override val size by lazy { map.size }
 
