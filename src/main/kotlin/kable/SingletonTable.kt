@@ -1,7 +1,7 @@
 package kable
 
 /**
- * Instance of a [Table] that contains 1 (and only one) entry
+ * Instance of a [Table] that contains one (and only one) entry
  */
 class SingletonTable<R, C, V>(val entry: Table.Entry<R, C, V>) : AbstractTable<R, C, V>() {
 

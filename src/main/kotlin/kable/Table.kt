@@ -14,7 +14,7 @@ interface Table<R, C, V> {
     /** Columns that have at least one entry in the table */
     val columns: Set<C>
 
-    /** Values containeds in the table */
+    /** Values contained in the table */
     val values: Collection<V>
 
     /** Entries of the table */

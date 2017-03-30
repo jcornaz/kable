@@ -18,6 +18,7 @@ It's exactly the same concept as [guava](https://github.com/google/guava) [table
 * This project is written in kotlin and provide useful functions, extension functions and operators that let you write nicer code
 
 ## Code Examples
+### Create tables
 ```kotlin
 // Create an empty table
 val empty = emptyTable<Char, Int, String>()
