@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Table.Entry - kable</title>
+<link rel="stylesheet" href="..\..\..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">kable</a>&nbsp;/&nbsp;<a href="../../index.html">kable</a>&nbsp;/&nbsp;<a href="../index.html">Table</a>&nbsp;/&nbsp;<a href=".">Entry</a><br/>
+<br/>
+<h1>Entry</h1>
+<code><span class="keyword">interface </span><span class="identifier">Entry</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">C</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Table entry</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="column.html">column</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">column</span><span class="symbol">: </span><span class="identifier">C</span></code>
+<p>Column</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="row.html">row</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">row</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Row</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="value.html">value</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">value</span><span class="symbol">: </span><span class="identifier">V</span></code>
+<p>Value</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="component1.html">component1</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">component1</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code>
+<p>Row</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="component2.html">component2</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">component2</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">C</span></code>
+<p>Column</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="component3.html">component3</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">component3</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span></code>
+<p>Value</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../-simple-table-entry/index.html">SimpleTableEntry</a></td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SimpleTableEntry</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">C</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Simple table entry implementation</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
