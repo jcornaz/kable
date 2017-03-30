@@ -97,3 +97,23 @@ inline fun <R, C, V, T : Comparable<T>> Table<R, C, V>.minBy(selector: (Table.En
 /** Returns the first entry having the smallest value according to the provided [comparator] or `null` if there are no entries */
 fun <R, C, V> Table<R, C, V>.minWith(comparator: Comparator<Table.Entry<R, C, V>>): Table.Entry<R, C, V>? =
         entries.minWith(comparator)
+
+/** Returns a new table containing all entries matching the given [predicate] */
+inline fun <R, C, V> Table<R, C, V>.filter(predicate: (Table.Entry<R, C, V>) -> Boolean): Table<R, C, V> =
+        tableOf(entries.filter(predicate))
+
+/** Returns a new table containing all entries not matching the given [predicate] */
+inline fun <R, C, V> Table<R, C, V>.filterNot(predicate: (Table.Entry<R, C, V>) -> Boolean): Table<R, C, V> =
+        tableOf(entries.filterNot(predicate))
+
+/** Returns a new table containing all entries on rows matching the given [predicate] */
+inline fun <R, C, V> Table<R, C, V>.filterRows(predicate: (R) -> Boolean): Table<R, C, V> =
+        tableOf(entries.filter{ (row, _, _) -> predicate(row)})
+
+/** Returns a new table containing all entries on columns matching the given [predicate] */
+inline fun <R, C, V> Table<R, C, V>.filterColumns(predicate: (C) -> Boolean): Table<R, C, V> =
+        tableOf(entries.filter{ (_, column, _) -> predicate(column)})
+
+/** Returns a new table containing all entries with a values matching the given [predicate] */
+inline fun <R, C, V> Table<R, C, V>.filterValues(predicate: (V) -> Boolean): Table<R, C, V> =
+        tableOf(entries.filter{ (_, _, value) -> predicate(value)})
