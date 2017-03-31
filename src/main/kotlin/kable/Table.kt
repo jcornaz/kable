@@ -72,6 +72,10 @@ interface Table<R, C, out V> {
         /** Value */
         operator fun component3() = value
 
+        /** Return the entry as a [Pair] */
         fun toPair(): Pair<Pair<R, C>, V> = (row to column) to value
+
+        /** Return the entry as a [Triple] */
+        fun toTriple(): Triple<R, C, V> = Triple(row, column, value)
     }
 }
