@@ -41,4 +41,8 @@ class EmptyTableTest {
         for(entry in emptyTable<Char, Int, String>())
             fail()
     }
+
+    @Test fun testToString() {
+        assertEquals("{}", emptyTable<String, Char, Int>().toString())
+    }
 }

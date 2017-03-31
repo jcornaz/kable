@@ -114,4 +114,14 @@ class BiKeyMapTest {
         assertNotEquals(table1, table3)
         assertNotEquals(table2, table4)
     }
+
+    @Test fun testToString() {
+        val table = tableOf(
+                entry('A', 1, "hello"),
+                entry('B', 4, "world"),
+                entry('A', 4, "bye")
+        )
+
+        assertEquals("{(A, 1)=hello, (B, 4)=world, (A, 4)=bye}", table.toString())
+    }
 }

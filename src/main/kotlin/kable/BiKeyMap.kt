@@ -56,4 +56,6 @@ class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTabl
         override fun hasNext() = i.hasNext()
         override fun next() = i.next().let { entry(it.key.first, it.key.second, it.value) }
     }
+
+    override fun toString() = map.toString()
 }

@@ -43,4 +43,6 @@ class SingletonTable<R, C, V>(val entry: Entry<R, C, V>) : AbstractTable<R, C, V
         override fun next(): Entry<R, C, V> =
                 if (done) throw NoSuchElementException() else entry.also { done = true }
     }
+
+    override fun toString() = "{(${entry.row}, ${entry.column})=${entry.value}}"
 }
