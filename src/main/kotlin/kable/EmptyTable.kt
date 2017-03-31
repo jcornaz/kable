@@ -1,5 +1,7 @@
 package kable
 
+import kable.Table.Entry
+
 /**
  * Singleton instance of an empty [Table]
  */
@@ -9,7 +11,7 @@ object EmptyTable : AbstractTable<Any?, Any?, Any?>() {
     override val rows = emptySet<Any?>()
     override val columns = emptySet<Any?>()
     override val values = emptyList<Nothing>()
-    override val entries = emptySet<Table.Entry<Any?, Any?, Any?>>()
+    override val entries = emptySet<Entry<Any?, Any?, Any?>>()
 
     override fun isEmpty() = true
 
@@ -22,7 +24,7 @@ object EmptyTable : AbstractTable<Any?, Any?, Any?>() {
     override fun getColumn(column: Any?) = emptyMap<Any?, Any?>()
     override fun get(row: Any?, column: Any?) = null
 
-    override fun iterator() = object : Iterator<Table.Entry<Any?, Any?, Any?>> {
+    override fun iterator() = object : Iterator<Entry<Any?, Any?, Any?>> {
         override fun hasNext() = false
         override fun next() = throw NoSuchElementException()
     }

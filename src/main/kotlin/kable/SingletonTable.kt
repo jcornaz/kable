@@ -1,9 +1,11 @@
 package kable
 
+import kable.Table.Entry
+
 /**
  * Instance of a [Table] that contains one (and only one) entry
  */
-class SingletonTable<R, C, V>(val entry: Table.Entry<R, C, V>) : AbstractTable<R, C, V>() {
+class SingletonTable<R, C, V>(val entry: Entry<R, C, V>) : AbstractTable<R, C, V>() {
 
     override val size = 1
     override val rows = setOf(entry.row)
@@ -31,12 +33,12 @@ class SingletonTable<R, C, V>(val entry: Table.Entry<R, C, V>) : AbstractTable<R
 
     override fun contains(row: R, column: C) = row == entry.row && column == entry.column
 
-    override fun iterator() = object : Iterator<Table.Entry<R, C, V>> {
+    override fun iterator() = object : Iterator<Entry<R, C, V>> {
         var done = false
 
         override fun hasNext() = !done
 
-        override fun next(): Table.Entry<R, C, V> =
+        override fun next(): Entry<R, C, V> =
                 if (done) throw NoSuchElementException() else entry.also { done = true }
     }
 }

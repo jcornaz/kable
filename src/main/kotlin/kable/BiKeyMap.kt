@@ -1,5 +1,7 @@
 package kable
 
+import kable.Table.Entry
+
 /**
  * Implementation of a [Table] with
  */
@@ -31,7 +33,7 @@ class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTabl
 
     override val entries by lazy { map.map { entry(it.key.first, it.key.second, it.value) }.toSet() }
 
-    constructor(entries: Collection<Table.Entry<R, C, V>>) : this(
+    constructor(entries: Collection<Entry<R, C, V>>) : this(
             entries.associate { (it.row to it.column) to it.value }
     )
 
@@ -45,7 +47,7 @@ class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTabl
     override fun get(row: R, column: C) = get(row to column)
     operator fun get(key: Pair<R, C>) = map[key]
 
-    override fun iterator() = object : Iterator<Table.Entry<R, C, V>> {
+    override fun iterator() = object : Iterator<Entry<R, C, V>> {
         val i = map.iterator()
 
         override fun hasNext() = i.hasNext()
