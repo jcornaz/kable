@@ -1,10 +1,10 @@
 group 'kable'
-version '1.1-SNAPSHOT'
+version '1.1.0'
 
 buildscript {
     ext.api_version = '1.1'
 
-    ext.kotlin_version = '1.1.0'
+    ext.kotlin_version = '1.1.1'
     ext.dokka_version = '0.9.13'
     ext.gradle_git_version = '1.7.0'
 

@@ -61,7 +61,7 @@ for ((row, column, value) in table)
 ## Add Kable to your project
 You need to use a jdk 8 or newer.
 
-You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable). You only need to add the dependency in your build file.
+You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable) by adding the dependency in your build file.
 
 Here is an example with Gradle :
 
@@ -72,11 +72,35 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.slimaku:kable:v1.0.0'
+    compile 'com.github.slimaku:kable:v1.1.0'
 }
 ```
 
 You can also [use maven, sbt or leiningen](https://jitpack.io/#slimaku/kable).
 
-## Documentation
-[KDoc](https://slimaku.github.io/kable/doc/1.0/kable/kable/index.html)
+## API Reference
+[KDoc](https://slimaku.github.io/kable/doc/1.1/kable/kable/index.html)
+
+## Test
+Tests are written in [src/test/kable](https://github.com/slimaku/kable/tree/master/src/test/kotlin/kable)
+
+To run them, you only need to clone the project and launch the gradle task `test` :
+```bash
+git clone git@github.com:slimaku/kable.git
+cd kable
+./gradlew test
+```
+
+## License
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+A copy of the GNU General Public License is in the file "LICENSE" at the root of the project.
+If you don't find it, see <http://www.gnu.org/licenses/>.

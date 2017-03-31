@@ -1,5 +1,5 @@
 # Change log
-## 1.1-SNAPSHOT [Unreleased]
+## 1.1.0 (2017-03-31)
 ### Added
 * Map-like extension functions for Table (#3)
     * `forEach`
