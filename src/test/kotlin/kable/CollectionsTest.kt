@@ -60,4 +60,40 @@ class CollectionsTest {
 
         assertEquals(table, list.groupTableBy({ it.first() to it.length }, String::reversed))
     }
+
+    @Test fun testCreateTableWithAssociate() {
+        val list = listOf("hello world", "goodbye", "bye")
+
+        val table = tableOf(
+                entry('h', 11, false),
+                entry('g', 7, false),
+                entry('b', 3, true)
+        )
+
+        assertEquals(table, list.associateTable { entry(it.first(), it.length, it.length < 4) })
+    }
+
+    @Test fun testCreateTableWithAssociateBy() {
+        val list = listOf("hello world", "goodbye", "bye")
+
+        val table = tableOf(
+                entry('h', 11, "hello world"),
+                entry('g', 7, "goodbye"),
+                entry('b', 3, "bye")
+        )
+
+        assertEquals(table, list.associateTableBy { it.first() to it.length })
+    }
+
+    @Test fun testCreateTableWithAssociateByWithValueTransform() {
+        val list = listOf("hello world", "goodbye", "bye")
+
+        val table = tableOf(
+                entry('h', 11, "dlrow olleh"),
+                entry('g', 7, "eybdoog"),
+                entry('b', 3, "eyb")
+        )
+
+        assertEquals(table, list.associateTableBy({ it.first() to it.length }, String::reversed))
+    }
 }
