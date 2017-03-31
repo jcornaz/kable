@@ -281,7 +281,21 @@ class TablesTest {
         val actual: Collection<String?> = table.map { if (it.value.length < 4) null else it.value }
 
         assertEquals(3, actual.size)
-        assertEquals(expected.toSet(), actual.toSet())  // Order is not important
+        assertEquals(expected, actual.toSet())  // Order is not important
+    }
+
+    @Test fun testFlatMap() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = setOf("hello world", "goodbye", "bye", "dlrow olleh", "eybdoog", "eyb")
+        val actual: Collection<String> = table.flatMap { listOf(it.value, it.value.reversed()) }
+
+        assertEquals(6, actual.size)
+        assertEquals(expected, actual.toSet())  // Order is not important
     }
 
     @Test fun testMapNotNull() {
