@@ -7,7 +7,7 @@
     * `count`
     * `maxBy` / `maxWith` / `minBy` / `minWith`
     * filters (`filter`, `filterRows`, `filterColumns`, `filterValues`, etc.)
-    * maps (`map`, `mapRows`, `mapColumns`, `mapValues`, etc.)
+    * maps (`map`, `flatMap`, `mapRows`, `mapColumns`, `mapValues`, etc.)
 * `SingletonTable` class to handle more efficiently tables with only one entry
 * `EmptyTable` singleton to handle more efficiently empty tables
 * `toTable()` extension function on `Collection<Table.Entry<*, *, *>>` and `Map<Pair<*, *>, *>`
