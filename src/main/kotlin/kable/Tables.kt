@@ -129,6 +129,10 @@ inline fun <R, C, V> Table<R, C, V>.filterValues(predicate: (V) -> Boolean): Tab
 inline fun <R, C, V, T> Table<R, C, V>.map(transform: (Entry<R, C, V>) -> T): Collection<T> =
         toMap().map { transform(it.toTableEntry()) }
 
+/** Returns a list containing the results of applying the given [transform] function to each entry in the original table */
+inline fun <R, C, V, T> Table<R, C, V>.flatMap(transform: (Entry<R, C, V>) -> Iterable<T>): Collection<T> =
+        toMap().flatMap { transform(it.toTableEntry()) }
+
 /** Returns a list containing only the non-null results of applying the given [transform] function to each entry in the original table */
 inline fun <R, C, V, T : Any> Table<R, C, V>.mapNotNull(transform: (Entry<R, C, V>) -> T?): Collection<T> =
         toMap().mapNotNull { transform(it.toTableEntry()) }
