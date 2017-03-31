@@ -11,6 +11,7 @@
 * `SingletonTable` class to handle more efficiently tables with only one entry
 * `EmptyTable` singleton to handle more efficiently empty tables
 * `toTable()` extension function on `Collection<Table.Entry<*, *, *>>` and `Map<Pair<*, *>, *>`
+* Ability to create tables from collections with `Collection.groupTableBy` and `Collection.associateTableBy`
 
 ### Changed
 * Now `tableOf()` return an instance of `SingletonTable` or `EmptyTable` if possible
