@@ -118,17 +118,22 @@ inline fun <R, C, V> Table<R, C, V>.filterColumns(predicate: (C) -> Boolean): Ta
 inline fun <R, C, V> Table<R, C, V>.filterValues(predicate: (V) -> Boolean): Table<R, C, V> =
         tableOf(entries.filter { predicate(it.value) })
 
+/** Returns a list containing the results of applying the given [transform] function to each entry in the original table */
 inline fun <R, C, V, T> Table<R, C, V>.map(transform: (Table.Entry<R, C, V>) -> T): Collection<T> =
         entries.map(transform)
 
+/** Returns a list containing only the non-null results of applying the given [transform] function to each entry in the original table */
 inline fun <R, C, V, T : Any> Table<R, C, V>.mapNotNull(transform: (Table.Entry<R, C, V>) -> T?): Collection<T> =
         entries.map(transform).filterNotNull()
 
+/** Returns a new table with entries having the rows obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapRows(transform: (Table.Entry<R, C, V>) -> T): Table<T, C, V> =
         tableOf(entries.map { entry(transform(it), it.column, it.value) })
 
+/** Returns a new table with entries having the columns obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapColumns(transform: (Table.Entry<R, C, V>) -> T): Table<R, T, V> =
         tableOf(entries.map { entry(it.row, transform(it), it.value) })
 
+/** Returns a new table with entries having the values obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapValues(transform: (Table.Entry<R, C, V>) -> T): Table<R, C, T> =
         tableOf(entries.map { entry(it.row, it.column, transform(it)) })
