@@ -10,6 +10,7 @@
     * maps (`map`, `mapRows`, `mapColumns`, `mapValues`, etc.)
 * `SingletonTable` class to handle more efficiently tables with only one entry
 * `EmptyTable` singleton to handle more efficiently empty tables
+* `toTable()` extension function on `Collection<Table.Entry<*, *, *>>` and `Map<Pair<*, *>, *>`
 
 ### Changed
 * Now `tableOf()` return an instance of `SingletonTable` or `EmptyTable` if possible

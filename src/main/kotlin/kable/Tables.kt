@@ -47,15 +47,18 @@ operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V
 
 /** Return a new table with the same entries except the given row */
 fun <R, C, V> Table<R, C, V>.minusRow(row: R): Table<R, C, V> =
-        if (!containsRow(row)) this else tableOf(toMap().filterNot { (key, _) -> key.first == row })
+        if (!containsRow(row)) this
+        else toMap().filterNot { (key, _) -> key.first == row }.toTable()
 
 /** Return a new table with the same entries except the given column */
 fun <R, C, V> Table<R, C, V>.minusColumn(column: C): Table<R, C, V> =
-        if (!containsColumn(column)) this else tableOf(toMap().filterNot { (key, _) -> key.second == column })
+        if (!containsColumn(column)) this
+        else toMap().filterNot { (key, _) -> key.second == column }.toTable()
 
 /** Return a new table with the same entries except the row-column pair */
 operator fun <R, C, V> Table<R, C, V>.minus(key: Pair<R, C>): Table<R, C, V> =
-        if (key !in this) this else tableOf(toMap().filterNot { (k, _) -> k.first == key.first && k.second == key.second })
+        if (key !in this) this
+        else toMap().filterNot { (k, _) -> k.first == key.first && k.second == key.second }.toTable()
 
 /** Performs the given [action] on each entry */
 inline fun <R, C, V> Table<R, C, V>.forEach(action: (Entry<R, C, V>) -> Unit): Unit =
@@ -104,23 +107,23 @@ fun <R, C, V> Table<R, C, V>.minWith(comparator: Comparator<Entry<R, C, V>>): En
 
 /** Returns a new table containing all entries matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filter(predicate: (Entry<R, C, V>) -> Boolean): Table<R, C, V> =
-        tableOf(toMap().filter { predicate(it.toTableEntry()) })
+        toMap().filter { predicate(it.toTableEntry()) }.toTable()
 
 /** Returns a new table containing all entries not matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterNot(predicate: (Entry<R, C, V>) -> Boolean): Table<R, C, V> =
-        tableOf(toMap().filterNot { predicate(it.toTableEntry()) })
+        toMap().filterNot { predicate(it.toTableEntry()) }.toTable()
 
 /** Returns a new table containing all entries on rows matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterRows(predicate: (R) -> Boolean): Table<R, C, V> =
-        tableOf(toMap().filterKeys { predicate(it.first) })
+        toMap().filterKeys { predicate(it.first) }.toTable()
 
 /** Returns a new table containing all entries on columns matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterColumns(predicate: (C) -> Boolean): Table<R, C, V> =
-        tableOf(toMap().filterKeys { predicate(it.second) })
+        toMap().filterKeys { predicate(it.second) }.toTable()
 
 /** Returns a new table containing all entries with a values matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterValues(predicate: (V) -> Boolean): Table<R, C, V> =
-        tableOf(toMap().filterValues(predicate))
+        toMap().filterValues(predicate).toTable()
 
 /** Returns a list containing the results of applying the given [transform] function to each entry in the original table */
 inline fun <R, C, V, T> Table<R, C, V>.map(transform: (Entry<R, C, V>) -> T): Collection<T> =
@@ -132,12 +135,12 @@ inline fun <R, C, V, T : Any> Table<R, C, V>.mapNotNull(transform: (Entry<R, C, 
 
 /** Returns a new table with entries having the rows obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapRows(transform: (Entry<R, C, V>) -> T): Table<T, C, V> =
-        tableOf(toMap().mapKeys { transform(it.toTableEntry()) to it.key.second })
+        toMap().mapKeys { transform(it.toTableEntry()) to it.key.second }.toTable()
 
 /** Returns a new table with entries having the columns obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapColumns(transform: (Entry<R, C, V>) -> T): Table<R, T, V> =
-        tableOf(toMap().mapKeys { it.key.first to transform(it.toTableEntry()) })
+        toMap().mapKeys { it.key.first to transform(it.toTableEntry()) }.toTable()
 
 /** Returns a new table with entries having the values obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapValues(transform: (Entry<R, C, V>) -> T): Table<R, C, T> =
-        tableOf(toMap().mapValues { transform(it.toTableEntry()) })
+        toMap().mapValues { transform(it.toTableEntry()) }.toTable()
