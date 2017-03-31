@@ -20,6 +20,10 @@ interface Table<R, C, out V> {
     /** Entries of the table */
     val entries: Set<Entry<R, C, V>>
 
+    /** Return a map representation of the table */
+    fun toMap(): Map<Pair<R, C>, V> =
+            entries.associate { it.toPair() }
+
     /** Return true if, and only if, the table has no entry */
     fun isEmpty(): Boolean = size == 0
 
@@ -67,5 +71,11 @@ interface Table<R, C, out V> {
 
         /** Value */
         operator fun component3() = value
+
+        /** Return the entry as a [Pair] */
+        fun toPair(): Pair<Pair<R, C>, V> = (row to column) to value
+
+        /** Return the entry as a [Triple] */
+        fun toTriple(): Triple<R, C, V> = Triple(row, column, value)
     }
 }

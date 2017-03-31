@@ -34,12 +34,15 @@ class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTabl
     override val entries by lazy { map.map { entry(it.key.first, it.key.second, it.value) }.toSet() }
 
     constructor(entries: Collection<Entry<R, C, V>>) : this(
-            entries.associate { (it.row to it.column) to it.value }
+            entries.associate { it.toPair() }
     )
+
+    override fun toMap() = map
 
     override fun isEmpty(): Boolean = map.isEmpty()
 
     override fun contains(row: R, column: C) = (row to column) in map
+    override fun containsValue(value: V) = map.containsValue(value)
 
     override fun getRow(row: R) = rowsMap[row] ?: emptyMap()
     override fun getColumn(column: C) = columnsMap[column] ?: emptyMap()
