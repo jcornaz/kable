@@ -6,6 +6,8 @@
     * `all` / `any` / `none`
     * `count`
     * `maxBy` / `maxWith` / `minBy` / `minWith`
+    * filters (`filter`, `filterRows`, `filterColumns`, `filterValues`, etc.)
+    * maps (`map`, `mapRows`, `mapColumns`, `mapValues`, etc.)
 * `SingletonTable` class to handle more efficiently tables with only one entry
 * `EmptyTable` singleton to handle more efficiently empty tables
 
