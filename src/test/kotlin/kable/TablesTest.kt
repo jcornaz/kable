@@ -106,11 +106,11 @@ class TablesTest {
         )
 
         var i = 0
-        assertTrue(table.all { i++ ; it.column > 0 })
+        assertTrue(table.all { i++; it.column > 0 })
         assertEquals(i, 3)
 
         i = 0
-        assertFalse(table.all { i++ ; it.column < 3 })
+        assertFalse(table.all { i++; it.column < 3 })
         assertTrue(i < 3)
     }
 
@@ -125,11 +125,11 @@ class TablesTest {
         assertFalse(emptyTable<Char, Int, String>().any())
 
         var i = 0
-        assertTrue(table.any { i++ ; it.column > 3 })
+        assertTrue(table.any { i++; it.column > 3 })
         assertTrue(i < 3)
 
         i = 0
-        assertFalse(table.any { i++ ; it.column < 0 })
+        assertFalse(table.any { i++; it.column < 0 })
         assertEquals(3, i)
     }
 
@@ -144,11 +144,11 @@ class TablesTest {
         assertTrue(emptyTable<Char, Int, String>().none())
 
         var i = 0
-        assertFalse(table.none { i++ ; it.column > 3 })
+        assertFalse(table.none { i++; it.column > 3 })
         assertTrue(i < 3)
 
         i = 0
-        assertTrue(table.none { i++ ; it.column < 0 })
+        assertTrue(table.none { i++; it.column < 0 })
         assertEquals(3, i)
     }
 
@@ -268,5 +268,87 @@ class TablesTest {
         val filtered: Table<Char, Int, String> = table.filterValues { it.length > 5 }
 
         assertEquals(expected, filtered)
+    }
+
+    @Test fun testMap() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = setOf("hello world", "goodbye", null)
+        val actual: Collection<String?> = table.map { if (it.value.length < 4) null else it.value }
+
+        assertEquals(3, actual.size)
+        assertEquals(expected.toSet(), actual.toSet())  // Order is not important
+    }
+
+    @Test fun testMapNotNull() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = listOf("hello world", "goodbye")
+        val actual: Collection<String> = table.mapNotNull { (_, _, value) -> if (value.length < 4) null else value }
+
+        assertEquals(2, actual.size)
+        assertEquals(expected.toSet(), actual.toSet())  // Order is not important
+    }
+
+    @Test fun testMapRows() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry("A1", 1, "hello world"),
+                entry("B4", 4, "goodbye"),
+                entry("A4", 4, "bye")
+        )
+
+        val actual = table.mapRows { (row, column, _) -> row.toString() + column }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test fun testMapColumns() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('A', "A1", "hello world"),
+                entry('B', "B4", "goodbye"),
+                entry('A', "A4", "bye")
+        )
+
+        val actual = table.mapColumns { (row, column, _) -> row.toString() + column }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test fun testMapValues() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        val expected = tableOf(
+                entry('A', 1, 11),
+                entry('B', 4, 7),
+                entry('A', 4, 3)
+        )
+
+        val actual = table.mapValues { it.value.length }
+
+        assertEquals(expected, actual)
     }
 }
