@@ -14,6 +14,9 @@ fun <R, C, V> entry(row: R, column: C, value: V): Entry<R, C, V> = SimpleTableEn
 /** Create an empty table */
 fun <R, C, V> tableOf(): Table<R, C, V> = emptyTable()
 
+/** Create a table with a [map] of entries */
+fun <R, C, V> tableOf(map: Map<Pair<R, C>, V>) = map.toTable()
+
 /** Create a table with the given entries */
 fun <R, C, V> tableOf(entries: Collection<Entry<R, C, V>>): Table<R, C, V> = when {
     entries.isEmpty() -> emptyTable()
@@ -32,27 +35,27 @@ operator fun <R, C> Table<R, C, *>.contains(key: Pair<R, C>) = contains(key.firs
 
 /** Return a new table with the same entries plus the given new entry */
 operator fun <R, C, V> Table<R, C, V>.plus(entry: Entry<R, C, V>): Table<R, C, V> =
-        BiKeyMap(entries + entry)
+        tableOf(toMap() + entry.toPair())
 
 /** Return a new table with the same entries plus the given new entries */
 operator fun <R, C, V> Table<R, C, V>.plus(entries: Collection<Entry<R, C, V>>): Table<R, C, V> =
-        entries.fold(this) { table, entry -> table + entry }
+        tableOf(toMap() + entries.associate { it.toPair() })
 
 /** Return a new table with the same entries plus entries of the given table */
 operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V> =
-        this + table.entries
+        tableOf(toMap() + table.toMap())
 
 /** Return a new table with the same entries except the given row */
 fun <R, C, V> Table<R, C, V>.minusRow(row: R): Table<R, C, V> =
-        if (!containsRow(row)) this else BiKeyMap(entries.filterNot { it.row == row })
+        if (!containsRow(row)) this else tableOf(toMap().filterNot { (key, _) -> key.first == row })
 
 /** Return a new table with the same entries except the given column */
 fun <R, C, V> Table<R, C, V>.minusColumn(column: C): Table<R, C, V> =
-        if (!containsColumn(column)) this else BiKeyMap(entries.filterNot { it.column == column })
+        if (!containsColumn(column)) this else tableOf(toMap().filterNot { (key, _) -> key.second == column })
 
 /** Return a new table with the same entries except the row-column pair */
 operator fun <R, C, V> Table<R, C, V>.minus(key: Pair<R, C>): Table<R, C, V> =
-        if (key !in this) this else BiKeyMap(entries.filterNot { it.row == key.first && it.column == key.second })
+        if (key !in this) this else tableOf(toMap().filterNot { (k, _) -> k.first == key.first && k.second == key.second })
 
 /** Performs the given [action] on each entry */
 inline fun <R, C, V> Table<R, C, V>.forEach(action: (Entry<R, C, V>) -> Unit): Unit =
@@ -60,24 +63,24 @@ inline fun <R, C, V> Table<R, C, V>.forEach(action: (Entry<R, C, V>) -> Unit): U
 
 /** Returns `true` if all entries match the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.all(predicate: (Entry<R, C, V>) -> Boolean): Boolean =
-        entries.all(predicate)
+        toMap().all { (key, value) -> predicate(entry(key.first, key.second, value)) }
 
 /** Returns `true` if map has at least one entry */
-fun Table<*, *, *>.any(): Boolean = entries.any()
+fun Table<*, *, *>.any(): Boolean = toMap().any()
 
 /** Returns `true` if at least one entry matches the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.any(predicate: (Entry<R, C, V>) -> Boolean): Boolean =
-        entries.any(predicate)
+        toMap().any { (key, value) -> predicate(entry(key.first, key.second, value)) }
 
 /** Returns `true` if the map has no entries */
-fun Table<*, *, *>.none(): Boolean = entries.none()
+fun Table<*, *, *>.none(): Boolean = toMap().none()
 
 /** Returns `true` if no entry match the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.none(predicate: (Entry<R, C, V>) -> Boolean): Boolean =
-        entries.none(predicate)
+        toMap().none { (key, value) -> predicate(entry(key.first, key.second, value)) }
 
 /** Returns the number of entries in this map */
-fun Table<*, *, *>.count(): Int = entries.count()
+fun Table<*, *, *>.count(): Int = size
 
 /** Returns the number of entries matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.count(predicate: (Entry<R, C, V>) -> Boolean): Int =
@@ -129,12 +132,12 @@ inline fun <R, C, V, T : Any> Table<R, C, V>.mapNotNull(transform: (Entry<R, C, 
 
 /** Returns a new table with entries having the rows obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapRows(transform: (Entry<R, C, V>) -> T): Table<T, C, V> =
-        tableOf(entries.map { entry(transform(it), it.column, it.value) })
+        tableOf(toMap().mapKeys { (key, value) -> transform(entry(key.first, key.second, value)) to key.second })
 
 /** Returns a new table with entries having the columns obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapColumns(transform: (Entry<R, C, V>) -> T): Table<R, T, V> =
-        tableOf(entries.map { entry(it.row, transform(it), it.value) })
+        tableOf(toMap().mapKeys { (key, value) -> key.first to transform(entry(key.first, key.second, value)) })
 
 /** Returns a new table with entries having the values obtained by applying the [transform] function to each entry */
 inline fun <R, C, V, T> Table<R, C, V>.mapValues(transform: (Entry<R, C, V>) -> T): Table<R, C, T> =
-        tableOf(entries.map { entry(it.row, it.column, transform(it)) })
+        tableOf(toMap().mapValues { (key, value) -> transform(entry(key.first, key.second, value)) })

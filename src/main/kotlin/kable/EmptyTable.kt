@@ -13,6 +13,8 @@ object EmptyTable : AbstractTable<Any?, Any?, Any?>() {
     override val values = emptyList<Nothing>()
     override val entries = emptySet<Entry<Any?, Any?, Any?>>()
 
+    override fun toMap() = emptyMap<Pair<Any?, Any?>, Any?>()
+
     override fun isEmpty() = true
 
     override fun containsRow(row: Any?) = false
@@ -30,5 +32,4 @@ object EmptyTable : AbstractTable<Any?, Any?, Any?>() {
     }
 
     override fun equals(other: Any?) = other is Table<*, *, *> && other.isEmpty()
-    override fun hashCode() = emptySet<Any?>().hashCode()
 }
