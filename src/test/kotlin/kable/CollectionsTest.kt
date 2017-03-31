@@ -36,4 +36,28 @@ class CollectionsTest {
 
         assertEquals(table, list.toTable())
     }
+
+    @Test fun testCreateTableWithGroupBy() {
+        val list = listOf("hello world", "goodbye", "bye", "bee")
+
+        val table = tableOf(
+                entry('h', 11, listOf("hello world")),
+                entry('g', 7, listOf("goodbye")),
+                entry('b', 3, listOf("bye", "bee"))
+        )
+
+        assertEquals(table, list.groupTableBy { it.first() to it.length })
+    }
+
+    @Test fun testCreateTableWithGroupByWithValueTransform() {
+        val list = listOf("hello world", "goodbye", "bye", "bee")
+
+        val table = tableOf(
+                entry('h', 11, listOf("dlrow olleh")),
+                entry('g', 7, listOf("eybdoog")),
+                entry('b', 3, listOf("eyb", "eeb"))
+        )
+
+        assertEquals(table, list.groupTableBy({ it.first() to it.length }, String::reversed))
+    }
 }
