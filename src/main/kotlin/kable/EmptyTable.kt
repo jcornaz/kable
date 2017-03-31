@@ -32,4 +32,6 @@ object EmptyTable : AbstractTable<Any?, Any?, Any?>() {
     }
 
     override fun equals(other: Any?) = other is Table<*, *, *> && other.isEmpty()
+
+    override fun toString() = "{}"
 }

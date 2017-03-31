@@ -14,7 +14,8 @@
 * Ability to create tables from collections with `Collection.groupTableBy` and `Collection.associateTableBy`
 
 ### Changed
-* Now `tableOf()` return an instance of `SingletonTable` or `EmptyTable` if possible
+* Now `tableOf()` returns an instance of `SingletonTable` or `EmptyTable` if possible
+* Now `Table.toString()` returns more comprehensive strings
 
 ## 1.0.0 (2017-01-14)
 ### Added

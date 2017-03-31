@@ -61,4 +61,8 @@ class SingletonTableTest {
         assertEquals(SingletonTable(entry('A', 1, "hello world")), tableOf(entry('A', 1, "hello world"), entry('B', 2, "bye")) - ('B' to 2))
         assertEquals(tableOf(entry('A', 1, "hello world"), entry('B', 2, "bye")) - ('B' to 2), SingletonTable(entry('A', 1, "hello world")))
     }
+
+    @Test fun testToString() {
+        assertEquals("{(A, 1)=hello world}", SingletonTable(entry('A', 1, "hello world")).toString())
+    }
 }
