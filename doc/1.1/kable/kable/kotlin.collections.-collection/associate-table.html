@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>associateTable - kable</title>
+<link rel="stylesheet" href="..\..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kable</a>&nbsp;/&nbsp;<a href="../index.html">kable</a>&nbsp;/&nbsp;<a href="index.html">kotlin.collections.Collection</a>&nbsp;/&nbsp;<a href=".">associateTable</a><br/>
+<br/>
+<h1>associateTable</h1>
+<a name="kable$associateTable(kotlin.collections.Collection((kable.associateTable.T)), kotlin.Function1((kable.associateTable.T, kable.Table.Entry((kable.associateTable.R, kable.associateTable.C, kable.associateTable.V)))))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Collection</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">associateTable</span><span class="symbol">(</span><span class="identifier" id="kable$associateTable(kotlin.collections.Collection((kable.associateTable.T)), kotlin.Function1((kable.associateTable.T, kable.Table.Entry((kable.associateTable.R, kable.associateTable.C, kable.associateTable.V)))))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a <a href="../-table/index.html">Table</a> containing key-value pairs provided by <a href="associate-table.html#kable$associateTable(kotlin.collections.Collection((kable.associateTable.T)), kotlin.Function1((kable.associateTable.T, kable.Table.Entry((kable.associateTable.R, kable.associateTable.C, kable.associateTable.V)))))/transform">transform</a> function
+applied to elements of the given collection.</p>
+<p>If any of two pairs would have the same key the last one gets added to the table.</p>
+<p>The returned table preserves the entry iteration order of the original collection.</p>
+</BODY>
+</HTML>
