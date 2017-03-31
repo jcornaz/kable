@@ -108,12 +108,12 @@ inline fun <R, C, V> Table<R, C, V>.filterNot(predicate: (Table.Entry<R, C, V>) 
 
 /** Returns a new table containing all entries on rows matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterRows(predicate: (R) -> Boolean): Table<R, C, V> =
-        tableOf(entries.filter{ (row, _, _) -> predicate(row)})
+        tableOf(entries.filter { predicate(it.row) })
 
 /** Returns a new table containing all entries on columns matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterColumns(predicate: (C) -> Boolean): Table<R, C, V> =
-        tableOf(entries.filter{ (_, column, _) -> predicate(column)})
+        tableOf(entries.filter { predicate(it.column) })
 
 /** Returns a new table containing all entries with a values matching the given [predicate] */
 inline fun <R, C, V> Table<R, C, V>.filterValues(predicate: (V) -> Boolean): Table<R, C, V> =
-        tableOf(entries.filter{ (_, _, value) -> predicate(value)})
+        tableOf(entries.filter { predicate(it.value) })
