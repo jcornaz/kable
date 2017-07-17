@@ -1,10 +1,10 @@
 # Kable
-[![LGPLv3](https://img.shields.io/badge/license-LGPLv3-blue.svg)](https://raw.githubusercontent.com/slimaku/kable/master/LICENSE)
-[![JitPack](https://jitpack.io/v/slimaku/kable.svg)](https://jitpack.io/#slimaku/kable)
-[![Build Status](https://travis-ci.org/slimaku/kable.svg?branch=master)](https://travis-ci.org/slimaku/kable)
-[![Code quality](https://codebeat.co/badges/5c6f587d-8348-42c0-9bb0-7067e548841b)](https://codebeat.co/projects/github-com-slimaku-kable)
-[![Issues](https://img.shields.io/github/issues/slimaku/kable.svg)](https://github.com/slimaku/kable/issues)
-[![Pull requests](https://img.shields.io/github/issues-pr/slimaku/kable.svg)](https://github.com/slimaku/kable/pulls)
+[![LGPLv3](https://img.shields.io/badge/license-LGPLv3-blue.svg)](https://raw.githubusercontent.com/jcornaz/kable/master/LICENSE)
+[![JitPack](https://jitpack.io/v/jcornaz/kable.svg)](https://jitpack.io/#jcornaz/kable)
+[![Build Status](https://travis-ci.org/jcornaz/kable.svg?branch=master)](https://travis-ci.org/jcornaz/kable)
+[![Code quality](https://codebeat.co/badges/5c6f587d-8348-42c0-9bb0-7067e548841b)](https://codebeat.co/projects/github-com-jcornaz-kable)
+[![Issues](https://img.shields.io/github/issues/jcornaz/kable.svg)](https://github.com/jcornaz/kable/issues)
+[![Pull requests](https://img.shields.io/github/issues-pr/jcornaz/kable.svg)](https://github.com/jcornaz/kable/pulls)
 
 Bi dimensional maps for kotlin (and java)
 
@@ -61,7 +61,7 @@ for ((row, column, value) in table)
 ## Add Kable to your project
 You need to use a jdk 8 or newer.
 
-You can get the artifacts from [Jitpack](https://jitpack.io/#slimaku/kable) by adding the dependency in your build file.
+You can get the artifacts from [Jitpack](https://jitpack.io/#jcornaz/kable) by adding the dependency in your build file.
 
 Here is an example with Gradle :
 
@@ -72,24 +72,19 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.slimaku:kable:v1.1.0'
+    compile 'com.github.jcornaz:kable:v1.1.0'
 }
 ```
 
-You can also [use maven, sbt or leiningen](https://jitpack.io/#slimaku/kable).
+You can also [use maven, sbt or leiningen](https://jitpack.io/#jcornaz/kable).
 
 ## API Reference
-[KDoc](https://slimaku.github.io/kable/doc/1.1/kable/kable/index.html)
+[KDoc](https://jcornaz.github.io/kable/doc/1.1/kable/kable/index.html)
 
 ## Test
-Tests are written in [src/test/kable](https://github.com/slimaku/kable/tree/master/src/test/kotlin/kable)
+Tests are written in [src/test/kable](https://github.com/jcornaz/kable/tree/master/src/test/kotlin/kable)
 
-To run them, you only need to clone the project and launch the gradle task `test` :
-```bash
-git clone git@github.com:slimaku/kable.git
-cd kable
-./gradlew test
-```
+You can run them from the root directory with : `./gradlew test`
 
 ## License
 This program is free software: you can redistribute it and/or modify
