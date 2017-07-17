@@ -1,4 +1,8 @@
 # Change log
+## 1.2-SNAPSHOT (unreleased)
+### Added
+* Get operator for rows : `table[row]`. It also makes possible to retrieve a value with `table[row][col]` which is equivalent to `table[row, col]`.
+
 ## 1.1.0 (2017-03-31)
 ### Added
 * Map-like extension functions for Table (#3)

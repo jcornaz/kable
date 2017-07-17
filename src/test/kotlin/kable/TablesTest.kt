@@ -365,4 +365,15 @@ class TablesTest {
 
         assertEquals(expected, actual)
     }
+
+    @Test fun testGet() {
+        val table = tableOf(
+                entry('A', 1, "hello world"),
+                entry('B', 4, "goodbye"),
+                entry('A', 4, "bye")
+        )
+
+        assertEquals("hello world", table['A'][1])
+        assertEquals(mapOf(1 to "hello world", 4 to "bye"), table['A'])
+    }
 }

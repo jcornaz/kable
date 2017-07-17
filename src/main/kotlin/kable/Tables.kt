@@ -52,6 +52,13 @@ fun <R, C, V> tableOf(vararg entries: Entry<R, C, V>): Table<R, C, V> = tableOf(
 /** Return true if, and only if, the table contains the given row-column key pair */
 operator fun <R, C> Table<R, C, *>.contains(key: Pair<R, C>) = contains(key.first, key.second)
 
+/**
+ * Return all the values of the row mapped by column
+ *
+ * @see Table.getRow
+ */
+operator fun <R, C, V> Table<R, C, V>.get(row: R): Map<C, V> = getRow(row)
+
 /** Return a new table with the same entries plus the given new entry */
 operator fun <R, C, V> Table<R, C, V>.plus(entry: Entry<R, C, V>): Table<R, C, V> =
         tableOf(toMap() + entry.toPair())
