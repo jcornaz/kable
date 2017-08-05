@@ -19,15 +19,29 @@
 
 package kable
 
+/**
+ * Mutable version of a [Table]
+ */
 interface MutableTable<R, C, V> : Table<R, C, V> {
 
+    /** Set the value associated with the given row and column */
     operator fun set(row: R, column: C, value: V)
+
+    /** Set all column-values associations for the given row */
     fun setRow(row: R, entries: Map<C, V>)
+
+    /** Set all row-values association for the given column */
     fun setColumn(column: C, entries: Map<R, V>)
 
+    /** Remove the entry for the given row and column if any */
     fun remove(row: R, column: C): V?
+
+    /** Remove the given row */
     fun removeRow(row: R): Map<C, V>
+
+    /** Remove the given column */
     fun removeColumn(column: C): Map<R, V>
 
+    /** Remove all the entries in the table */
     fun clear()
 }
