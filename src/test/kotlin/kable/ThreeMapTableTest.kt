@@ -3,9 +3,9 @@ package kable
 import org.junit.Assert
 import org.junit.Test
 
-class MutableBiKeyMapTest : TableTest() {
+class ThreeMapTableTest : TableTest() {
 
-    override fun <R, C, V> createTable(vararg entries: Table.Entry<R, C, V>) = MutableBiKeyMap(entries.toList())
+    override fun <R, C, V> createTable(vararg entries: Table.Entry<R, C, V>) = ThreeMapTable(entries.toList())
 
     @Test fun testSet() {
         val table = createTable(

@@ -19,7 +19,15 @@
 
 package kable
 
-class MutableBiKeyMap<R, C, V>(entries: Iterable<Table.Entry<R, C, V>>) : AbstractTable<R, C, V>(), MutableTable<R, C, V> {
+/**
+ * Implementation of a [MutableTable] with 3 backed mutable map.
+ *
+ * The backed maps are :
+ * * map of values by row-column pairs
+ * * map of row-value maps by columns
+ * * map of column-value maps by rows
+ */
+class ThreeMapTable<R, C, V>(entries: Iterable<Table.Entry<R, C, V>>) : AbstractTable<R, C, V>(), MutableTable<R, C, V> {
 
     private val map = mutableMapOf<Pair<R, C>, V>()
     private val rowsMap = mutableMapOf<R, MutableMap<C, V>>()
