@@ -21,9 +21,10 @@ package com.github.jcornaz.kable.impl
 
 import com.github.jcornaz.kable.Table.Entry
 import com.github.jcornaz.kable.util.entry
+import com.github.jcornaz.kable.util.toTableEntry
 
 /**
- * Implementation of a [Table] backed with [Map] where keys are row-column pairs
+ * Implementation of a [com.github.jcornaz.kable.Table] backed with [Map] where keys are row-column pairs
  */
 class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : AbstractTable<R, C, V>() {
 
@@ -32,8 +33,8 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
     override val size by lazy { map.size }
 
     /** Map of maps by rows, then by columns */
-    val rowsMap by lazy {
-        map.entries.groupBy { it.key.first }.mapValues { entry ->
+    val rowsMap: Map<R, Map<C, V>> by lazy {
+        map.asSequence().groupBy { it.key.first }.mapValues { entry ->
             entry.value.associate {
                 it.key.second to it.value
             }
@@ -41,8 +42,8 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
     }
 
     /** Map of maps by columns, then by rows */
-    val columnsMap by lazy {
-        map.entries.groupBy { it.key.second }.mapValues { entry ->
+    val columnsMap: Map<C, Map<R, V>> by lazy {
+        map.asSequence().groupBy { it.key.second }.mapValues { entry ->
             entry.value.associate {
                 it.key.first to it.value
             }
@@ -53,9 +54,7 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
     override val columns by lazy { columnsMap.keys }
     override val values by lazy { map.values }
 
-    override val entries by lazy { map.map { entry(it.key.first, it.key.second, it.value) }.toSet() }
-
-    override fun toMap() = map
+    override val entries by lazy { map.asSequence().map { entry(it.key.first, it.key.second, it.value) }.toSet() }
 
     override fun isEmpty(): Boolean = map.isEmpty()
 
@@ -72,7 +71,7 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
         val i = map.iterator()
 
         override fun hasNext() = i.hasNext()
-        override fun next() = i.next().let { entry(it.key.first, it.key.second, it.value) }
+        override fun next() = i.next().toTableEntry()
     }
 
     override fun toString() = map.toString()

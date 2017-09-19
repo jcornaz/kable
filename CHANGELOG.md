@@ -6,6 +6,7 @@
 
 ### Improve
 * The extensions function to create tables are now on `Iterable` instead of `Collection`
+* Many operations get improved performances with the usage of sequences and iterable
 
 ### Breaking changes
 * Remove `tableOf(Collection)`. Use `Iterable.toTable()` instead.

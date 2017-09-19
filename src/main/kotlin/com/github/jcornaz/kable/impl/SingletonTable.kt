@@ -33,8 +33,6 @@ class SingletonTable<R, C, V>(val entry: Entry<R, C, V>) : AbstractTable<R, C, V
     override val values = listOf(entry.value)
     override val entries = setOf(entry)
 
-    override fun toMap() = mapOf(entry.toPair())
-
     override fun getRow(row: R) =
             if (row == entry.row) mapOf(entry.column to entry.value) else emptyMap()
 
