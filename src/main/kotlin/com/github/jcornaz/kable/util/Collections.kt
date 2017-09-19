@@ -18,18 +18,30 @@
  */
 
 @file:JvmName("Collections")
+
 package com.github.jcornaz.kable.util
 
+import com.github.jcornaz.kable.MutableTable
 import com.github.jcornaz.kable.Table
 import com.github.jcornaz.kable.Table.Entry
-import com.github.jcornaz.kable.MutableTable
+import com.github.jcornaz.kable.impl.BiKeyMap
+import com.github.jcornaz.kable.impl.SingletonTable
 import com.github.jcornaz.kable.impl.ThreeMapTable
 
 /** Create a new table with this entries */
-fun <R, C, V> Collection<Entry<R, C, V>>.toTable(): Table<R, C, V> = tableOf(this)
+fun <R, C, V> Iterable<Entry<R, C, V>>.toTable(): Table<R, C, V> {
+
+    val i = iterator()
+    if (!i.hasNext()) return emptyTable()
+
+    val elt = i.next()
+    if (!i.hasNext()) return SingletonTable(elt)
+
+    return BiKeyMap(this)
+}
 
 /** Create a new mutable table with this entries */
-fun <R, C, V> Iterable<Table.Entry<R, C, V>>.toMutableTable(): MutableTable<R, C, V> = ThreeMapTable(this)
+fun <R, C, V> Iterable<Entry<R, C, V>>.toMutableTable(): MutableTable<R, C, V> = ThreeMapTable(this)
 
 /**
  * Groups elements of the original collection by the key returned by the given [keySelector] function
@@ -37,7 +49,7 @@ fun <R, C, V> Iterable<Table.Entry<R, C, V>>.toMutableTable(): MutableTable<R, C
  *
  * The returned table preserves the entry iteration order of the keys produced from the original collection.
  */
-inline fun <R, C, T> Collection<T>.groupTableBy(keySelector: (T) -> Pair<R, C>): Table<R, C, List<T>> =
+inline fun <R, C, T> Iterable<T>.groupTableBy(keySelector: (T) -> Pair<R, C>): Table<R, C, List<T>> =
         groupBy(keySelector).toTable()
 
 /**
@@ -47,7 +59,7 @@ inline fun <R, C, T> Collection<T>.groupTableBy(keySelector: (T) -> Pair<R, C>):
  *
  * The returned table preserves the entry iteration order of the keys produced from the original collection.
  */
-inline fun <R, C, V, T> Collection<T>.groupTableBy(keySelector: (T) -> Pair<R, C>, valueTransform: (T) -> V): Table<R, C, List<V>> =
+inline fun <R, C, V, T> Iterable<T>.groupTableBy(keySelector: (T) -> Pair<R, C>, valueTransform: (T) -> V): Table<R, C, List<V>> =
         groupBy(keySelector, valueTransform).toTable()
 
 /**
@@ -58,7 +70,7 @@ inline fun <R, C, V, T> Collection<T>.groupTableBy(keySelector: (T) -> Pair<R, C
  *
  * The returned table preserves the entry iteration order of the original collection.
  */
-inline fun <R, C, V, T> Collection<T>.associateTable(transform: (T) -> Entry<R, C, V>): Table<R, C, V> =
+inline fun <R, C, V, T> Iterable<T>.associateTable(transform: (T) -> Entry<R, C, V>): Table<R, C, V> =
         map(transform).toTable()
 
 /**
@@ -67,7 +79,7 @@ inline fun <R, C, V, T> Collection<T>.associateTable(transform: (T) -> Entry<R, 
  *
  * If any two elements would have the same key returned by [keySelector] the last one gets added to the table.
  */
-inline fun <R, C, V> Collection<V>.associateTableBy(keySelector: (V) -> Pair<R, C>): Table<R, C, V> =
+inline fun <R, C, V> Iterable<V>.associateTableBy(keySelector: (V) -> Pair<R, C>): Table<R, C, V> =
         associateBy(keySelector).toTable()
 
 /**
@@ -75,5 +87,5 @@ inline fun <R, C, V> Collection<V>.associateTableBy(keySelector: (V) -> Pair<R, 
  *
  * If any two elements would have the same key returned by [keySelector] the last one gets added to the table.
  */
-inline fun <R, C, V, T> Collection<T>.associateTableBy(keySelector: (T) -> Pair<R, C>, valueTransform: (T) -> V): Table<R, C, V> =
+inline fun <R, C, V, T> Iterable<T>.associateTableBy(keySelector: (T) -> Pair<R, C>, valueTransform: (T) -> V): Table<R, C, V> =
         associateBy(keySelector, valueTransform).toTable()

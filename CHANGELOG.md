@@ -4,7 +4,11 @@
 * Get operator for rows : `table[row]`. It also makes possible to retrieve a value with `table[row][col]` which is equivalent to `table[row, col]`.
 * Mutable tables
 
+### Improve
+* The extensions function to create tables are now on `Iterable` instead of `Collection`
+
 ### Breaking changes
+* Remove `tableOf(Collection)`. Use `Iterable.toTable()` instead.
 * Packages renamed 
     * Root api : `com.github.jcornaz.kable` (instead of `kable`)
     * Implementations class : `com.github.jcornaz.kable.impl` (instead of `kable`)

@@ -18,6 +18,7 @@
  */
 
 @file:JvmName("Maps")
+
 package com.github.jcornaz.kable.util
 
 import com.github.jcornaz.kable.Table
@@ -27,7 +28,7 @@ import com.github.jcornaz.kable.impl.BiKeyMap
 fun <R, C, V> Map<Pair<R, C>, V>.toTable(): Table<R, C, V> = when {
     isEmpty() -> emptyTable()
     size == 1 -> entries.first().let { (key, value) -> entry(key.first, key.second, value) }.let { tableOf(it) }
-    else -> BiKeyMap(this)
+    else -> BiKeyMap(asSequence().map { it.toTableEntry() }.asIterable())
 }
 
 /** Return a [Table.Entry] equivalent to this [Map.Entry] */

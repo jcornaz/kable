@@ -25,7 +25,9 @@ import com.github.jcornaz.kable.util.entry
 /**
  * Implementation of a [Table] backed with [Map] where keys are row-column pairs
  */
-class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTable<R, C, V>() {
+class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : AbstractTable<R, C, V>() {
+
+    val map: Map<Pair<R, C>, V> by lazy { entries.associate { (row, column, value) -> (row to column) to value } }
 
     override val size by lazy { map.size }
 
@@ -52,10 +54,6 @@ class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTabl
     override val values by lazy { map.values }
 
     override val entries by lazy { map.map { entry(it.key.first, it.key.second, it.value) }.toSet() }
-
-    constructor(entries: Collection<Entry<R, C, V>>) : this(
-            entries.associate { it.toPair() }
-    )
 
     override fun toMap() = map
 

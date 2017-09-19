@@ -28,7 +28,6 @@ import com.github.jcornaz.kable.impl.BiKeyMap
 import com.github.jcornaz.kable.impl.EmptyTable
 import com.github.jcornaz.kable.impl.SimpleTableEntry
 import com.github.jcornaz.kable.impl.SingletonTable
-import kable.impl.*
 import java.util.*
 
 /** Create an empty table */
@@ -36,12 +35,6 @@ fun <R, C, V> emptyTable(): Table<R, C, V> = @Suppress("UNCHECKED_CAST") (EmptyT
 
 /** Create a table entry with the given row, column and value */
 fun <R, C, V> entry(row: R, column: C, value: V): Entry<R, C, V> = SimpleTableEntry(row, column, value)
-
-/** Create an empty table */
-fun <R, C, V> tableOf(): Table<R, C, V> = emptyTable()
-
-/** Create a table with a [map] of entries */
-fun <R, C, V> tableOf(map: Map<Pair<R, C>, V>) = map.toTable()
 
 /** Create a table with the given entries */
 fun <R, C, V> tableOf(entries: Collection<Entry<R, C, V>>): Table<R, C, V> = when {
@@ -54,7 +47,7 @@ fun <R, C, V> tableOf(entries: Collection<Entry<R, C, V>>): Table<R, C, V> = whe
 fun <R, C, V> tableOf(entry: Entry<R, C, V>): Table<R, C, V> = SingletonTable(entry)
 
 /** Create a table with the given entries */
-fun <R, C, V> tableOf(vararg entries: Entry<R, C, V>): Table<R, C, V> = tableOf(entries.toList())
+fun <R, C, V> tableOf(vararg entries: Entry<R, C, V>): Table<R, C, V> = entries.asIterable().toTable()
 
 /** Create a mutable table with the given entries */
 fun <R, C, V> mutableTableOf(vararg entries: Entry<R, C, V>): MutableTable<R, C, V> = entries.asIterable().toMutableTable()
@@ -77,15 +70,15 @@ operator fun <R, C, V> Table<R, C, V>.get(row: R): Map<C, V> = getRow(row)
 
 /** Return a new table with the same entries plus the given new entry */
 operator fun <R, C, V> Table<R, C, V>.plus(entry: Entry<R, C, V>): Table<R, C, V> =
-        tableOf(toMap() + entry.toPair())
+        (toMap() + entry.toPair()).toTable()
 
 /** Return a new table with the same entries plus the given new entries */
 operator fun <R, C, V> Table<R, C, V>.plus(entries: Collection<Entry<R, C, V>>): Table<R, C, V> =
-        tableOf(toMap() + entries.associate { it.toPair() })
+        (toMap() + entries.associate { it.toPair() }).toTable()
 
 /** Return a new table with the same entries plus entries of the given table */
 operator fun <R, C, V> Table<R, C, V>.plus(table: Table<R, C, V>): Table<R, C, V> =
-        tableOf(toMap() + table.toMap())
+        (toMap() + table.toMap()).toTable()
 
 /** Return a new table with the same entries except the given row */
 fun <R, C, V> Table<R, C, V>.minusRow(row: R): Table<R, C, V> =
@@ -103,7 +96,7 @@ operator fun <R, C, V> Table<R, C, V>.minus(key: Pair<R, C>): Table<R, C, V> =
         else toMap().filterNot { (k, _) -> k.first == key.first && k.second == key.second }.toTable()
 
 /** Performs the given [action] on each entry */
-inline fun <R, C, V> Table<R, C, V>.forEach(action: (Entry<R, C, V>) -> Unit): Unit =
+inline fun <R, C, V> Table<R, C, V>.forEach(action: (Entry<R, C, V>) -> Unit) =
         entries.forEach(action)
 
 /** Returns `true` if all entries match the given [predicate] */
