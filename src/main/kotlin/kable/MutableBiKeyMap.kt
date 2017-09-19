@@ -19,57 +19,94 @@
 
 package kable
 
-class MutableBiKeyMap<R, C, V>(val backedMap: MutableMap<Pair<R, C>, V> = HashMap()) : AbstractTable<R, C, V>(), MutableTable<R, C, V> {
+class MutableBiKeyMap<R, C, V>(entries: Iterable<Table.Entry<R, C, V>>) : AbstractTable<R, C, V>(), MutableTable<R, C, V> {
+
+    private val map = mutableMapOf<Pair<R, C>, V>()
+    private val rowsMap = mutableMapOf<R, MutableMap<C, V>>()
+    private val columnsMap = mutableMapOf<C, MutableMap<R, V>>()
 
     override val rows: Set<R>
-        get() = backedMap.keys.map { it.first }.toSet()
+        get() = rowsMap.keys
 
     override val columns: Set<C>
-        get() = backedMap.keys.map { it.second }.toSet()
+        get() = columnsMap.keys
 
     override val values: Collection<V>
-        get() = backedMap.values
+        get() = map.values
 
     override val entries: Set<Table.Entry<R, C, V>>
-        get() = backedMap.entries.map { it.toTableEntry() }.toSet()
+        get() = map.asSequence().map { it.toTableEntry() }.toSet()
 
     override val size: Int
-        get() = backedMap.size
+        get() = map.size
 
-    constructor(entries: Collection<Table.Entry<R, C, V>>) : this(entries.associate { (row, column, value) -> (row to column) to value }.toMutableMap())
     constructor(table: Table<R, C, V>) : this(table.entries)
 
-    override fun get(row: R, column: C): V? = backedMap[row to column]
-    override fun getRow(row: R): Map<C, V> = backedMap.filterKeys { it.first == row }.mapKeys { it.key.second }
-    override fun getColumn(column: C): Map<R, V> = backedMap.filterKeys { it.second == column }.mapKeys { it.key.first }
+    init {
+        putAll(entries)
+    }
+
+    override fun get(row: R, column: C): V? = map[row to column]
+    override fun getRow(row: R): Map<C, V> = rowsMap[row].orEmpty()
+    override fun getColumn(column: C): Map<R, V> = columnsMap[column].orEmpty()
 
     override fun set(row: R, column: C, value: V) {
-        backedMap[row to column] = value
+        map[row to column] = value
+        rowsMap.computeIfAbsent(row) { mutableMapOf() }.put(column, value)
+        columnsMap.computeIfAbsent(column) { mutableMapOf() }.put(row, value)
     }
 
     override fun setRow(row: R, entries: Map<C, V>) {
-        backedMap.keys.filter { it.first == row && it.second !in entries }.forEach { backedMap.remove(it) }
-        entries.forEach { (column, value) -> backedMap[row to column] = value }
+        if (entries.isEmpty()) {
+            removeRow(row)
+        } else {
+            map.keys.filter { it.first == row && it.second !in entries }.forEach { map.remove(it) }
+            rowsMap[row]?.let { rowMap ->
+                rowMap.keys.filter { it !in entries }.forEach { rowMap.remove(it) }
+            }
+            columnsMap.asSequence().filter { it.key !in entries }.map { it.value }.forEach { it.remove(row) }
+
+            putAll(entries.asSequence().map { (column, value) -> entry(row, column, value) }.asIterable())
+        }
     }
 
     override fun setColumn(column: C, entries: Map<R, V>) {
-        backedMap.keys.filter { it.second == column && it.first !in entries }.forEach { backedMap.remove(it) }
-        entries.forEach { (row, value) -> backedMap[row to column] = value }
+        if (entries.isEmpty()) {
+            removeColumn(column)
+        } else {
+            map.keys.filter { it.second == column && it.first !in entries }.forEach { map.remove(it) }
+            columnsMap[column]?.let { columnMap ->
+                columnMap.keys.filter { it !in entries }.forEach { columnMap.remove(it) }
+            }
+            rowsMap.asSequence().filter { it.key !in entries }.map { it.value }.forEach { it.remove(column) }
+
+            putAll(entries.asSequence().map { (row, value) -> entry(row, column, value) }.asIterable())
+        }
     }
 
-    override fun remove(row: R, column: C): V? = backedMap.remove(row to column)
-
-    override fun removeRow(row: R): Map<C, V> = getRow(row).also { result ->
-        result.keys.forEach { backedMap.remove(row to it) }
+    override fun remove(row: R, column: C): V? {
+        rowsMap[row]?.remove(column)
+        columnsMap[column]?.remove(row)
+        return map.remove(row to column)
     }
 
-    override fun removeColumn(column: C): Map<R, V> = getColumn(column).also { result ->
-        result.keys.forEach { backedMap.remove(it to column) }
+    override fun removeRow(row: R): Map<C, V> {
+        map.keys.filter { it.first == row }.forEach { map.remove(it) }
+        columnsMap.asSequence().map { it.value }.forEach { it.remove(row) }
+        return rowsMap.remove(row).orEmpty()
+    }
+
+    override fun removeColumn(column: C): Map<R, V> {
+        map.keys.filter { it.second == column }.forEach { map.remove(it) }
+        rowsMap.asSequence().map { it.value }.forEach { it.remove(column) }
+        return columnsMap.remove(column).orEmpty()
     }
 
     override fun clear() {
-        backedMap.clear()
+        map.clear()
+        rowsMap.clear()
+        columnsMap.clear()
     }
 
-    override fun toString() = backedMap.toString()
+    override fun toString() = map.toString()
 }

@@ -27,6 +27,21 @@ interface MutableTable<R, C, V> : Table<R, C, V> {
     /** Set the value associated with the given row and column */
     operator fun set(row: R, column: C, value: V)
 
+    /**
+     * Add the given entry
+     *
+     * Replace any existing entry with the same row and column value
+     */
+    fun put(entry: Table.Entry<R, C, V>) = set(entry.row, entry.column, entry.value)
+
+    /**
+     * Add all the given entries
+     *
+     * Replace any exiting entries with a row and column pair contained in the given argument
+     * In case of duplicates given entries, only the last one is kept
+     */
+    fun putAll(entries: Iterable<Table.Entry<R, C, V>>) = entries.forEach(this::put)
+
     /** Set all column-values associations for the given row */
     fun setRow(row: R, entries: Map<C, V>)
 
