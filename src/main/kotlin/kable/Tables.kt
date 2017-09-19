@@ -49,6 +49,15 @@ fun <R, C, V> tableOf(entry: Entry<R, C, V>): Table<R, C, V> = SingletonTable(en
 /** Create a table with the given entries */
 fun <R, C, V> tableOf(vararg entries: Entry<R, C, V>): Table<R, C, V> = tableOf(entries.toList())
 
+/** Create a mutable table with the given entries */
+fun <R, C, V> mutableTableOf(vararg entries: Entry<R, C, V>): MutableTable<R, C, V> = entries.asIterable().toMutableTable()
+
+/** Create a copy of this table */
+fun <R, C, V> Table<R, C, V>.toTable(): Table<R, C, V> = entries.toTable()
+
+/** Create a mutable copy of this table */
+fun <R, C, V> Table<R, C, V>.toMutableTable(): MutableTable<R, C, V> = entries.toMutableTable()
+
 /** Return true if, and only if, the table contains the given row-column key pair */
 operator fun <R, C> Table<R, C, *>.contains(key: Pair<R, C>) = contains(key.first, key.second)
 
