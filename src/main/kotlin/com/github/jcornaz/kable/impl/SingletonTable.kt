@@ -17,9 +17,9 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable.impl
 
-import kable.Table.Entry
+import com.github.jcornaz.kable.Table.Entry
 
 /**
  * Instance of a [Table] that contains one (and only one) entry

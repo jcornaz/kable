@@ -19,9 +19,16 @@
 
 @file:JvmName("Tables")
 
-package kable
+package com.github.jcornaz.kable.util
 
-import kable.Table.Entry
+import com.github.jcornaz.kable.MutableTable
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.Table.Entry
+import com.github.jcornaz.kable.impl.BiKeyMap
+import com.github.jcornaz.kable.impl.EmptyTable
+import com.github.jcornaz.kable.impl.SimpleTableEntry
+import com.github.jcornaz.kable.impl.SingletonTable
+import kable.impl.*
 import java.util.*
 
 /** Create an empty table */

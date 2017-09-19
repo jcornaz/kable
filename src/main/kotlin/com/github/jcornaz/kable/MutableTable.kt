@@ -17,7 +17,7 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable
 
 /**
  * Mutable version of a [Table]

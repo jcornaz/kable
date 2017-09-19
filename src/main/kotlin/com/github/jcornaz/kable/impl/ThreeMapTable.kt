@@ -17,7 +17,12 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable.impl
+
+import com.github.jcornaz.kable.MutableTable
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.util.entry
+import com.github.jcornaz.kable.util.toTableEntry
 
 /**
  * Implementation of a [MutableTable] with 3 backed mutable map.

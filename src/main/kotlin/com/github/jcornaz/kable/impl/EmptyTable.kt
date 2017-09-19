@@ -17,9 +17,10 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable.impl
 
-import kable.Table.Entry
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.Table.Entry
 
 /**
  * Singleton instance of an empty [Table]

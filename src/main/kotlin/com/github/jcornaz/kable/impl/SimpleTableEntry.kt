@@ -17,10 +17,13 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable.impl
 
-/** Abstraction of a table */
-abstract class AbstractTable<R, C, out V> : Table<R, C, V> {
-    override fun equals(other: Any?) = other is Table<*, *, *> && other.entries == entries
-    override fun hashCode() = entries.hashCode()
-}
+import com.github.jcornaz.kable.Table
+
+/** Simple table entry implementation*/
+data class SimpleTableEntry<out R, out C, out V>(
+        override val row: R,
+        override val column: C,
+        override val value: V
+) : Table.Entry<R, C, V>

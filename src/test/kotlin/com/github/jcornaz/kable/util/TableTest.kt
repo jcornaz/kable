@@ -1,5 +1,7 @@
-package kable
+package com.github.jcornaz.kable.util
 
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.impl.BiKeyMap
 import org.junit.Assert.*
 import org.junit.Test
 

@@ -17,11 +17,19 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+@file:JvmName("Maps")
+package com.github.jcornaz.kable.util
 
-/** Simple table entry implementation*/
-data class SimpleTableEntry<out R, out C, out V>(
-        override val row: R,
-        override val column: C,
-        override val value: V
-) : Table.Entry<R, C, V>
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.impl.BiKeyMap
+
+/** Return a [Table] corresponding to the map where keys will be split into rows ans columns */
+fun <R, C, V> Map<Pair<R, C>, V>.toTable(): Table<R, C, V> = when {
+    isEmpty() -> emptyTable()
+    size == 1 -> entries.first().let { (key, value) -> entry(key.first, key.second, value) }.let { tableOf(it) }
+    else -> BiKeyMap(this)
+}
+
+/** Return a [Table.Entry] equivalent to this [Map.Entry] */
+fun <R, C, V> Map.Entry<Pair<R, C>, V>.toTableEntry(): Table.Entry<R, C, V> =
+        entry(key.first, key.second, value)

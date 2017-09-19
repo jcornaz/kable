@@ -18,9 +18,12 @@
  */
 
 @file:JvmName("Collections")
-package kable
+package com.github.jcornaz.kable.util
 
-import kable.Table.Entry
+import com.github.jcornaz.kable.Table
+import com.github.jcornaz.kable.Table.Entry
+import com.github.jcornaz.kable.MutableTable
+import com.github.jcornaz.kable.impl.ThreeMapTable
 
 /** Create a new table with this entries */
 fun <R, C, V> Collection<Entry<R, C, V>>.toTable(): Table<R, C, V> = tableOf(this)

@@ -1,4 +1,4 @@
-package kable
+package com.github.jcornaz.kable.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

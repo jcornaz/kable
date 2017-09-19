@@ -17,7 +17,7 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package kable
+package com.github.jcornaz.kable
 
 /**
  * A table is almost like a [Map] but, has two keys instead of one : the row and the column.

@@ -17,16 +17,12 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@file:JvmName("Maps")
-package kable
+package com.github.jcornaz.kable.impl
 
-/** Return a [Table] corresponding to the map where keys will be split into rows ans columns */
-fun <R, C, V> Map<Pair<R, C>, V>.toTable(): Table<R, C, V> = when {
-    isEmpty() -> emptyTable()
-    size == 1 -> entries.first().let { (key, value) -> entry(key.first, key.second, value) }.let { tableOf(it) }
-    else -> BiKeyMap(this)
+import com.github.jcornaz.kable.Table
+
+/** Abstraction of a table */
+abstract class AbstractTable<R, C, out V> : Table<R, C, V> {
+    override fun equals(other: Any?) = other is Table<*, *, *> && other.entries == entries
+    override fun hashCode() = entries.hashCode()
 }
-
-/** Return a [Table.Entry] equivalent to this [Map.Entry] */
-fun <R, C, V> Map.Entry<Pair<R, C>, V>.toTableEntry(): Table.Entry<R, C, V> =
-        entry(key.first, key.second, value)
