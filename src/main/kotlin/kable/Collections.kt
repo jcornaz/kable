@@ -25,6 +25,9 @@ import kable.Table.Entry
 /** Create a new table with this entries */
 fun <R, C, V> Collection<Entry<R, C, V>>.toTable(): Table<R, C, V> = tableOf(this)
 
+/** Create a new mutable table with this entries */
+fun <R, C, V> Iterable<Table.Entry<R, C, V>>.toMutableTable(): MutableTable<R, C, V> = ThreeMapTable(this)
+
 /**
  * Groups elements of the original collection by the key returned by the given [keySelector] function
  * applied to each element and returns a [Table] where each group key is associated with a list of corresponding elements.

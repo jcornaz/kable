@@ -22,7 +22,7 @@ package kable
 import kable.Table.Entry
 
 /**
- * Implementation of a [Table] with
+ * Implementation of a [Table] backed with [Map] where keys are row-column pairs
  */
 class BiKeyMap<R, C, V>(val map: Map<Pair<R, C>, V> = emptyMap()) : AbstractTable<R, C, V>() {
 
