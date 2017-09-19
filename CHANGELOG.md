@@ -2,18 +2,19 @@
 ## 2.0-SNAPSHOT (unreleased)
 ### Add
 * Get operator for rows : `table[row]`. It also makes possible to retrieve a value with `table[row][col]` which is equivalent to `table[row, col]`.
-* Mutable tables
+* Mutable tables (#21)
+* Table creation by row (#22)
 
 ### Improve
-* The extensions function to create tables are now on `Iterable` instead of `Collection`
+* The extensions function to create tables are now on `Iterable` instead of `Collection` (#24)
 * Many operations get improved performances with the usage of sequences and iterable
 
 ### Breaking changes
-* Remove `tableOf(Collection)`. Use `Iterable.toTable()` instead.
+* Remove `tableOf(Collection)`. Use `Iterable.toTable()` instead
 * Packages renamed 
-    * Root api : `com.github.jcornaz.kable` (instead of `kable`)
-    * Implementations class : `com.github.jcornaz.kable.impl` (instead of `kable`)
-    * Utilities functions : `com.github.jcornaz.kable.util` (instead of `kable`)
+    * Root api : `com.github.jcornaz.kable` (previously of `kable`)
+    * Implementations class : `com.github.jcornaz.kable.impl` (previously of `kable`)
+    * Utilities functions : `com.github.jcornaz.kable.util` (previously of `kable`)
 
 ## 1.1.0 (2017-03-31)
 ### Added

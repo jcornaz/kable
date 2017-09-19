@@ -7,7 +7,8 @@ import java.util.*
 
 class TablesTest {
 
-    @Test fun testPlus() {
+    @Test
+    fun testPlus() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -18,7 +19,8 @@ class TablesTest {
         assertEquals("good", table['C', 4])
     }
 
-    @Test fun testErase() {
+    @Test
+    fun testErase() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -29,7 +31,8 @@ class TablesTest {
         assertEquals("good", table['A', 4])
     }
 
-    @Test fun testMinus() {
+    @Test
+    fun testMinus() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -40,7 +43,8 @@ class TablesTest {
         assertNull(table['A', 4])
     }
 
-    @Test fun testMinusRow() {
+    @Test
+    fun testMinusRow() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -52,7 +56,8 @@ class TablesTest {
         assertNull(table['A', 1])
     }
 
-    @Test fun testMinusColumn() {
+    @Test
+    fun testMinusColumn() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -64,7 +69,8 @@ class TablesTest {
         assertNull(table['A', 4])
     }
 
-    @Test fun testMinusWhenNotContained() {
+    @Test
+    fun testMinusWhenNotContained() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -76,7 +82,8 @@ class TablesTest {
         assertSame(table, table.minusColumn(0))
     }
 
-    @Test fun testForEach() {
+    @Test
+    fun testForEach() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -99,7 +106,8 @@ class TablesTest {
         ), entries)
     }
 
-    @Test fun testAll() {
+    @Test
+    fun testAll() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -115,7 +123,8 @@ class TablesTest {
         assertTrue(i < 3)
     }
 
-    @Test fun testAny() {
+    @Test
+    fun testAny() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -134,7 +143,8 @@ class TablesTest {
         assertEquals(3, i)
     }
 
-    @Test fun testNone() {
+    @Test
+    fun testNone() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -153,7 +163,8 @@ class TablesTest {
         assertEquals(3, i)
     }
 
-    @Test fun testCount() {
+    @Test
+    fun testCount() {
         val table = tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
@@ -165,7 +176,8 @@ class TablesTest {
         assertEquals(1, table.count { it.column < 3 })
     }
 
-    @Test fun testMax() {
+    @Test
+    fun testMax() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -176,7 +188,8 @@ class TablesTest {
         assertEquals(entry('A', 1, "hello world"), table.maxWith(Comparator { o1, o2 -> o1.value.length - o2.value.length }))
     }
 
-    @Test fun testMin() {
+    @Test
+    fun testMin() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -187,7 +200,8 @@ class TablesTest {
         assertEquals(entry('A', 4, "bye"), table.minWith(Comparator { o1, o2 -> o1.value.length - o2.value.length }))
     }
 
-    @Test fun testFilter() {
+    @Test
+    fun testFilter() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -204,7 +218,8 @@ class TablesTest {
         assertEquals(expected, filtered)
     }
 
-    @Test fun testFilterNot() {
+    @Test
+    fun testFilterNot() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -220,7 +235,8 @@ class TablesTest {
         assertEquals(expected, filtered)
     }
 
-    @Test fun testFilterRows() {
+    @Test
+    fun testFilterRows() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -237,7 +253,8 @@ class TablesTest {
         assertEquals(expected, filtered)
     }
 
-    @Test fun testFilterColumns() {
+    @Test
+    fun testFilterColumns() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -254,7 +271,8 @@ class TablesTest {
         assertEquals(expected, filtered)
     }
 
-    @Test fun testFilterValues() {
+    @Test
+    fun testFilterValues() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -271,7 +289,8 @@ class TablesTest {
         assertEquals(expected, filtered)
     }
 
-    @Test fun testMap() {
+    @Test
+    fun testMap() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -285,7 +304,8 @@ class TablesTest {
         assertEquals(expected, actual.toSet())  // Order is not important
     }
 
-    @Test fun testFlatMap() {
+    @Test
+    fun testFlatMap() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -299,7 +319,8 @@ class TablesTest {
         assertEquals(expected, actual.toSet())  // Order is not important
     }
 
-    @Test fun testMapNotNull() {
+    @Test
+    fun testMapNotNull() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -313,7 +334,8 @@ class TablesTest {
         assertEquals(expected.toSet(), actual.toSet())  // Order is not important
     }
 
-    @Test fun testMapRows() {
+    @Test
+    fun testMapRows() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -331,7 +353,8 @@ class TablesTest {
         assertEquals(expected, actual)
     }
 
-    @Test fun testMapColumns() {
+    @Test
+    fun testMapColumns() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -349,7 +372,8 @@ class TablesTest {
         assertEquals(expected, actual)
     }
 
-    @Test fun testMapValues() {
+    @Test
+    fun testMapValues() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -367,7 +391,8 @@ class TablesTest {
         assertEquals(expected, actual)
     }
 
-    @Test fun testGet() {
+    @Test
+    fun testGet() {
         val table = tableOf(
                 entry('A', 1, "hello world"),
                 entry('B', 4, "goodbye"),
@@ -376,5 +401,29 @@ class TablesTest {
 
         assertEquals("hello world", table['A'][1])
         assertEquals(mapOf(1 to "hello world", 4 to "bye"), table['A'])
+    }
+
+    @Test
+    fun testCreateByRow() {
+        val actual = tableOf(
+                columns(1, 2, 3),
+                row('A', "a1", "a2", "a3"),
+                row('B', "b1", "b2", "b3"),
+                row('C', "c1", "c2", "c3")
+        )
+
+        val expected = tableOf(
+                entry('A', 1, "a1"),
+                entry('A', 2, "a2"),
+                entry('A', 3, "a3"),
+                entry('B', 1, "b1"),
+                entry('B', 2, "b2"),
+                entry('B', 3, "b3"),
+                entry('C', 1, "c1"),
+                entry('C', 2, "c2"),
+                entry('C', 3, "c3")
+        )
+
+        assertEquals(expected, actual)
     }
 }
