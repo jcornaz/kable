@@ -5,7 +5,11 @@ import com.github.jcornaz.kable.Table
 
 /** Represent a table row */
 data class TableRow<out R, out C>(
+
+        /** Key of the row */
         val key: R,
+
+        /** Values of the row in the same order as the column are given */
         val values: List<C>
 )
 

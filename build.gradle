@@ -1,4 +1,4 @@
-group 'kable'
+group 'com.github.jcornaz.kable'
 version '2.0-SNAPSHOT'
 
 buildscript {
@@ -46,6 +46,10 @@ jacocoTestReport {
     }
 }
 
+dokka {
+    includes = ['packages.md']
+}
+
 task sourcesJar(type: Jar) {
     from sourceSets.main.kotlin.srcDirs
     classifier = 'sources'
@@ -67,10 +71,17 @@ artifacts {
 }
 
 gitPublish {
+    repoUri = 'git@github.com:jcornaz/kable.git'
+    branch = 'gh-pages'
+
     contents {
-        from(dokka) {
-            into "doc/${api_version}"
-        }
+        from dokka
+        into "doc/${api_version}"
+    }
+
+    preserve {
+        include 'doc/1.1/**'
+        include 'doc/1.2/**'
     }
 }
 

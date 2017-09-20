@@ -22,9 +22,13 @@ package com.github.jcornaz.kable.impl
 import com.github.jcornaz.kable.Table.Entry
 
 /**
- * Instance of a [Table] that contains one (and only one) entry
+ * Instance of a [com.github.jcornaz.kable.Table] that contains one (and only one) entry
  */
-class SingletonTable<R, C, V>(val entry: Entry<R, C, V>) : AbstractTable<R, C, V>() {
+class SingletonTable<R, C, V>(
+
+        /** Single entry of the table */
+        val entry: Entry<R, C, V>
+) : AbstractTable<R, C, V>() {
 
     override val size = 1
     override val rows = setOf(entry.row)

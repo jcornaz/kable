@@ -53,8 +53,6 @@ class ThreeMapTable<R, C, V>(entries: Iterable<Table.Entry<R, C, V>> = emptyList
     override val size: Int
         get() = map.size
 
-    constructor(table: Table<R, C, V>) : this(table.entries)
-
     init {
         putAll(entries)
     }

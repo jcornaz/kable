@@ -2,7 +2,7 @@
 [![LGPLv3](https://img.shields.io/badge/license-LGPLv3-blue.svg)](https://raw.githubusercontent.com/jcornaz/kable/master/LICENSE)
 [![JitPack](https://jitpack.io/v/jcornaz/kable.svg)](https://jitpack.io/#jcornaz/kable)
 [![Build Status](https://travis-ci.org/jcornaz/kable.svg?branch=master)](https://travis-ci.org/jcornaz/kable)
-[![Code quality](https://codebeat.co/badges/5c6f587d-8348-42c0-9bb0-7067e548841b)](https://codebeat.co/projects/github-com-jcornaz-kable)
+[![Code quality](https://codebeat.co/badges/5c6f587d-8348-42c0-9bb0-7067e548841b)](https://codebeat.co/projects/github-com-slimaku-kable)
 [![Issues](https://img.shields.io/github/issues/jcornaz/kable.svg)](https://github.com/jcornaz/kable/issues)
 [![Pull requests](https://img.shields.io/github/issues-pr/jcornaz/kable.svg)](https://github.com/jcornaz/kable/pulls)
 

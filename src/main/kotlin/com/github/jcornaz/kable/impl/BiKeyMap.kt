@@ -28,6 +28,7 @@ import com.github.jcornaz.kable.util.toTableEntry
  */
 class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : AbstractTable<R, C, V>() {
 
+    /** Map of the values by row-column pairs */
     val map: Map<Pair<R, C>, V> by lazy { entries.associate { (row, column, value) -> (row to column) to value } }
 
     /** Map of maps by rows, then by columns */
@@ -64,8 +65,7 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
     override fun getRow(row: R) = rowsMap[row] ?: emptyMap()
     override fun getColumn(column: C) = columnsMap[column] ?: emptyMap()
 
-    override fun get(row: R, column: C) = get(row to column)
-    operator fun get(key: Pair<R, C>) = map[key]
+    override fun get(row: R, column: C) = map[row to column]
 
     override fun iterator() = object : Iterator<Entry<R, C, V>> {
         val i = map.iterator()
