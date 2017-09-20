@@ -24,11 +24,7 @@ package com.github.jcornaz.kable.util
 import com.github.jcornaz.kable.MutableTable
 import com.github.jcornaz.kable.Table
 import com.github.jcornaz.kable.Table.Entry
-import com.github.jcornaz.kable.impl.BiKeyMap
-import com.github.jcornaz.kable.impl.EmptyTable
-import com.github.jcornaz.kable.impl.SimpleTableEntry
-import com.github.jcornaz.kable.impl.SingletonTable
-import java.util.*
+import com.github.jcornaz.kable.impl.*
 
 /** Create an empty table */
 fun <R, C, V> emptyTable(): Table<R, C, V> = @Suppress("UNCHECKED_CAST") (EmptyTable as Table<R, C, V>)
@@ -65,12 +61,20 @@ operator fun <R, C> Table<R, C, *>.contains(key: Pair<R, C>) = contains(key.firs
 fun <R, C, V> Table<R, C, V>.toMap(): Map<Pair<R, C>, V> = entries.associate { it.toPair() }
 
 /** Create a sequence that returns all entries of this table */
-fun <R, C, V> Table<R, C, V>.asSequence(): Sequence<Entry<R, C, V>> = asIterable().asSequence()
+fun <R, C, V> Table<R, C, V>.asSequence(): Sequence<Entry<R, C, V>> = object : Sequence<Entry<R, C, V>> {
+    override fun iterator() = this@asSequence.iterator()
+}
 
 /** Create an iterable that returns all entries of this table */
 fun <R, C, V> Table<R, C, V>.asIterable(): Iterable<Entry<R, C, V>> = object : Iterable<Entry<R, C, V>> {
     override fun iterator() = this@asIterable.iterator()
 }
+
+/** Return a wrapper for this table which synchronize all access to the table making it thread safe */
+fun <R, C, V> MutableTable<R, C, V>.asSynchronized(): MutableTable<R, C, V> = SynchronizedTable(this)
+
+/** Return a thread safe copy of the table */
+fun <R, C, V> Table<R, C, V>.toSynchronized(): MutableTable<R, C, V> = toMutableTable().asSynchronized()
 
 /**
  * Return all the values of the row mapped by column

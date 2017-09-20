@@ -30,8 +30,6 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
 
     val map: Map<Pair<R, C>, V> by lazy { entries.associate { (row, column, value) -> (row to column) to value } }
 
-    override val size by lazy { map.size }
-
     /** Map of maps by rows, then by columns */
     val rowsMap: Map<R, Map<C, V>> by lazy {
         map.asSequence().groupBy { it.key.first }.mapValues { entry ->
@@ -49,6 +47,8 @@ class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : Abstr
             }
         }
     }
+
+    override val size by lazy { map.size }
 
     override val rows by lazy { rowsMap.keys }
     override val columns by lazy { columnsMap.keys }
