@@ -9,12 +9,12 @@
 Bi dimensional maps for kotlin (and java)
 
 ## Synopsis
-The goal is to provide a "table" data structure. A table is almost like a map in java. But with a table, values does not have a "key". Instead they have a "row" and a "column".
+The goal is to provide a "table" data structure. A table is almost like a map in java where each entry would have two keys the "row" and the "column".
 
 It's exactly the same concept as [guava](https://github.com/google/guava) [table](https://github.com/google/guava/wiki/NewCollectionTypesExplained#table). But :
 
 * You don't have to include the whole guava library
-* Tables provided by this project are immutable and even don't provide mutable method (guava immutable tables throw an exception when a mutable method is called)
+* This project provide a distinct separation between immutable and mutable tables in the same way as kotlin provide mutable and immutable collections
 * This project is written in kotlin and provide useful functions, extension functions and operators that let you write nicer code
 
 ## Code Examples
@@ -28,6 +28,19 @@ val table = tableOf(
     entry('A', 1, "hello"),
     entry('A', 2, "world")
 )
+
+// Create a table for given row list
+val tableByRow = tableOf(
+    columns('A', 'B', 'C'),
+    row(1, "a1", "b1", "c1"),
+    row(2, "a2", "b2", "c2"),
+    row(3, "a3", "b3", "c3")
+)
+
+// Use a mutable table
+val mutableTable = mutableTableOf<Char, Int, String>()
+table['A', 1] = "this is a1"
+table['B', 5] = "this is b5"
 ```
 
 ### Get content
@@ -50,6 +63,12 @@ val newTable3 = table.minusRow('A')
 
 // Remove a whole column
 val newTable4 = table.minusColumn('A')
+
+// if the table is mutable
+mutableTable['A', 1] = "test"
+mutableTable.remove('A', 1)
+mutableTable.removeColumn(2)
+mutableTable.clear()
 ```
 
 ### Iterate
@@ -57,6 +76,12 @@ val newTable4 = table.minusColumn('A')
 for ((row, column, value) in table)
     println("($row, $column) = $value")
 ```
+
+### Use map-like extensions functions
+```kotlin
+table.filterColumns { it.rem(2) == 0 }.forEach { (row, column, value) -> println("($row, $column) = $value") }
+```
+See all the available functions [here](https://jcornaz.github.io/kable/doc/2.0/kable/com.github.jcornaz.kable.util/) 
 
 ## Add Kable to your project
 You need to use a jdk 8 or newer.
@@ -72,14 +97,14 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.jcornaz:kable:v1.1.0'
+    compile 'com.github.jcornaz:kable:2.0.0'
 }
 ```
 
-You can also [use maven, sbt or leiningen](https://jitpack.io/#jcornaz/kable).
+You can also [use maven, sbt or leiningen](https://jitpack.io/#jcornaz/kable/v2.0.0).
 
 ## API Reference
-[KDoc](https://jcornaz.github.io/kable/doc/1.1/kable/kable/index.html)
+[KDoc](https://jcornaz.github.io/kable/doc/2.0/kable/)
 
 ## Test
 Tests are written in [src/test/kable](https://github.com/jcornaz/kable/tree/master/src/test/kotlin/kable)

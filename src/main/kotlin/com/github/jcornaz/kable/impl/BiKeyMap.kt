@@ -29,7 +29,7 @@ import com.github.jcornaz.kable.util.toTableEntry
 class BiKeyMap<R, C, V>(entries: Iterable<Entry<R, C, V>> = emptyList()) : AbstractTable<R, C, V>() {
 
     /** Map of the values by row-column pairs */
-    val map: Map<Pair<R, C>, V> by lazy { entries.associate { (row, column, value) -> (row to column) to value } }
+    val map: Map<Pair<R, C>, V> = entries.associate { (row, column, value) -> (row to column) to value }
 
     /** Map of maps by rows, then by columns */
     val rowsMap: Map<R, Map<C, V>> by lazy {
