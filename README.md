@@ -107,7 +107,7 @@ You can also [use maven, sbt or leiningen](https://jitpack.io/#jcornaz/kable/v2.
 [KDoc](https://jcornaz.github.io/kable/doc/2.0/kable/)
 
 ## Test
-Tests are written in [src/test/kable](https://github.com/jcornaz/kable/tree/master/src/test/kotlin/kable)
+Tests are written in [src/test](https://github.com/jcornaz/kable/tree/master/src/test/kotlin/com/github/jcornaz/kable)
 
 You can run them from the root directory with : `./gradlew test`
 
