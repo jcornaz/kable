@@ -76,6 +76,20 @@ fun <R, C, V> MutableTable<R, C, V>.asSynchronized(): MutableTable<R, C, V> = Sy
 /** Return a thread safe copy of the table */
 fun <R, C, V> Table<R, C, V>.toSynchronized(): MutableTable<R, C, V> = toMutableTable().asSynchronized()
 
+/** Put the given entry in the table */
+operator fun <R, C, V> MutableTable<R, C, V>.plusAssign(entry: Entry<R, C, V>) = put(entry)
+
+/** Put the given entries in the table */
+operator fun <R, C, V> MutableTable<R, C, V>.plusAssign(entries: Iterable<Entry<R, C, V>>) = putAll(entries)
+
+/** Remove the given entry key from the table */
+operator fun <R, C> MutableTable<R, C, *>.minusAssign(key: Pair<R, C>) {
+    remove(key)
+}
+
+/** Remove the given entry keys from the table */
+operator fun <R, C> MutableTable<R, C, *>.minusAssign(keys: Iterable<Pair<R, C>>) = removeAll(keys)
+
 /**
  * Return all the values of the row mapped by column
  *

@@ -51,6 +51,14 @@ interface MutableTable<R, C, V> : Table<R, C, V> {
     /** Remove the entry for the given row and column if any */
     fun remove(row: R, column: C): V?
 
+    /** Remove the entry for the given row-column pair */
+    fun remove(key: Pair<R, C>): V? = remove(key.first, key.second)
+
+    /** Remove the entries for the given row-column pairs */
+    fun removeAll(keys: Iterable<Pair<R, C>>) {
+        keys.forEach { remove(it) }
+    }
+
     /** Remove the given row */
     fun removeRow(row: R): Map<C, V>
 
