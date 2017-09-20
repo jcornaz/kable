@@ -2,11 +2,11 @@ group 'kable'
 version '2.0-SNAPSHOT'
 
 buildscript {
-    ext.api_version = '1.2'
+    ext.api_version = '2.0'
 
-    ext.kotlin_version = '1.1.3-2'
-    ext.dokka_version = '0.9.13'
-    ext.gradle_git_version = '1.7.0'
+    ext.kotlin_version = '1.1.4-3'
+    ext.dokka_version = '0.9.15'
+    ext.gradle_git_version = '0.3.0'
 
     repositories {
         mavenCentral()
@@ -16,14 +16,14 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
-        classpath "org.ajoberstar:gradle-git:$gradle_git_version"
+        classpath "org.ajoberstar:gradle-git-publish:$gradle_git_version"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'jacoco'
 apply plugin: 'org.jetbrains.dokka'
-apply plugin: 'org.ajoberstar.github-pages'
+apply plugin: 'org.ajoberstar.git-publish'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -66,10 +66,11 @@ artifacts {
     archives javadocJar
 }
 
-githubPages {
-    pages {
-        from dokka
-        into "doc/${api_version}"
+gitPublish {
+    contents {
+        from(dokka) {
+            into "doc/${api_version}"
+        }
     }
 }
 

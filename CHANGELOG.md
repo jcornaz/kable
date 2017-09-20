@@ -16,6 +16,9 @@
     * Root api : `com.github.jcornaz.kable` (previously of `kable`)
     * Implementations class : `com.github.jcornaz.kable.impl` (previously of `kable`)
     * Utilities functions : `com.github.jcornaz.kable.util` (previously of `kable`)
+    
+### Dependencies
+* Kotlin updated from 1.1.1 to 1.1.4-3
 
 ## 1.1.0 (2017-03-31)
 ### Added
