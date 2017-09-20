@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.github.jcornaz.kable.impl - kable</title>
+<link rel="stylesheet" href="..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">kable</a>&nbsp;/&nbsp;<a href=".">com.github.jcornaz.kable.impl</a><br/>
+<br/>
+<h2>Package com.github.jcornaz.kable.impl</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-abstract-table/index.html">AbstractTable</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractTable</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Abstraction of a table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-bi-key-map/index.html">BiKeyMap</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">BiKeyMap</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-table/index.html"><span class="identifier">AbstractTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Implementation of a <a href="../com.github.jcornaz.kable/-table/index.html">com.github.jcornaz.kable.Table</a> backed with <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a> where keys are row-column pairs</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-empty-table/index.html">EmptyTable</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">EmptyTable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-table/index.html"><span class="identifier">AbstractTable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>Singleton instance of an empty <a href="../com.github.jcornaz.kable/-table/index.html">Table</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-simple-table-entry/index.html">SimpleTableEntry</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SimpleTableEntry</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">C</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Simple table entry implementation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-singleton-table/index.html">SingletonTable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SingletonTable</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-table/index.html"><span class="identifier">AbstractTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Instance of a <a href="../com.github.jcornaz.kable/-table/index.html">com.github.jcornaz.kable.Table</a> that contains one (and only one) entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-synchronized-table/index.html">SynchronizedTable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SynchronizedTable</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Synchronize all access to the backed map, making it thread safe</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-three-map-table/index.html">ThreeMapTable</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ThreeMapTable</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-table/index.html"><span class="identifier">AbstractTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Implementation of a <a href="../com.github.jcornaz.kable/-mutable-table/index.html">MutableTable</a> with 3 backed mutable map.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

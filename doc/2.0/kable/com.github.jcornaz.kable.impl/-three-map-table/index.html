@@ -1,0 +1,516 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ThreeMapTable - kable</title>
+<link rel="stylesheet" href="..\..\..\style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kable</a>&nbsp;/&nbsp;<a href="../index.html">com.github.jcornaz.kable.impl</a>&nbsp;/&nbsp;<a href=".">ThreeMapTable</a><br/>
+<br/>
+<h1>ThreeMapTable</h1>
+<code><span class="keyword">class </span><span class="identifier">ThreeMapTable</span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-table/index.html"><span class="identifier">AbstractTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Implementation of a <a href="../../com.github.jcornaz.kable/-mutable-table/index.html">MutableTable</a> with 3 backed mutable map.</p>
+<p>The backed maps are :</p>
+<ul><li>map of values by row-column pairs</li>
+<li>map of row-value maps by columns</li>
+<li>map of column-value maps by rows</li>
+</ul>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ThreeMapTable</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$<init>(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)))/table">table</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span></code><code><span class="identifier">ThreeMapTable</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$<init>(kotlin.collections.Iterable((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)))))/entries">entries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;emptyList()<span class="symbol">)</span></code>
+<p>Implementation of a <a href="../../com.github.jcornaz.kable/-mutable-table/index.html">MutableTable</a> with 3 backed mutable map.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="columns.html">columns</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">columns</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">&gt;</span></code>
+<p>Columns that have at least one entry in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="entries.html">entries</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">entries</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Entries of the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rows.html">rows</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">rows</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><span class="identifier">Set</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code>
+<p>Rows that have at least one entry in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="size.html">size</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">size</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Number of entries in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="values.html">values</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Values contained in the table</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="clear.html">clear</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">clear</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Remove all the entries in the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$get(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$get(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code>
+<p>Return the value at the specified row and column, or null if there is no value at this row-column pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-column.html">getColumn</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getColumn</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$getColumn(com.github.jcornaz.kable.impl.ThreeMapTable.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return all the values of the columns mapped by row</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-row.html">getRow</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getRow</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$getRow(com.github.jcornaz.kable.impl.ThreeMapTable.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return all the values of the row mapped by column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove.html">remove</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">remove</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$remove(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$remove(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code>
+<p>Remove the entry for the given row and column if any</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-column.html">removeColumn</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">removeColumn</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$removeColumn(com.github.jcornaz.kable.impl.ThreeMapTable.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Remove the given column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-row.html">removeRow</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">removeRow</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$removeRow(com.github.jcornaz.kable.impl.ThreeMapTable.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Remove the given row</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set.html">set</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$set(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$set(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$set(com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">V</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set the value associated with the given row and column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-column.html">setColumn</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setColumn</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$setColumn(com.github.jcornaz.kable.impl.ThreeMapTable.C, kotlin.collections.Map((com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.V)))/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$setColumn(com.github.jcornaz.kable.impl.ThreeMapTable.C, kotlin.collections.Map((com.github.jcornaz.kable.impl.ThreeMapTable.R, com.github.jcornaz.kable.impl.ThreeMapTable.V)))/entries">entries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set all row-values association for the given column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-row.html">setRow</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setRow</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$setRow(com.github.jcornaz.kable.impl.ThreeMapTable.R, kotlin.collections.Map((com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)))/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="com.github.jcornaz.kable.impl.ThreeMapTable$setRow(com.github.jcornaz.kable.impl.ThreeMapTable.R, kotlin.collections.Map((com.github.jcornaz.kable.impl.ThreeMapTable.C, com.github.jcornaz.kable.impl.ThreeMapTable.V)))/entries">entries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set all column-values associations for the given row</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="to-string.html">toString</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-table/equals.html">equals</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.impl.AbstractTable$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-table/hash-code.html">hashCode</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/all.html">all</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">all</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$all(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.all.R, com.github.jcornaz.kable.util.all.C, com.github.jcornaz.kable.util.all.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.all.R, com.github.jcornaz.kable.util.all.C, com.github.jcornaz.kable.util.all.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns <code>true</code> if all entries match the given <a href="../../com.github.jcornaz.kable.util/all.html#com.github.jcornaz.kable.util$all(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.all.R, com.github.jcornaz.kable.util.all.C, com.github.jcornaz.kable.util.all.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.all.R, com.github.jcornaz.kable.util.all.C, com.github.jcornaz.kable.util.all.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/any.html">any</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">any</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns <code>true</code> if map has at least one entry</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">any</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$any(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.any.R, com.github.jcornaz.kable.util.any.C, com.github.jcornaz.kable.util.any.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.any.R, com.github.jcornaz.kable.util.any.C, com.github.jcornaz.kable.util.any.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns <code>true</code> if at least one entry matches the given <a href="../../com.github.jcornaz.kable.util/any.html#com.github.jcornaz.kable.util$any(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.any.R, com.github.jcornaz.kable.util.any.C, com.github.jcornaz.kable.util.any.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.any.R, com.github.jcornaz.kable.util.any.C, com.github.jcornaz.kable.util.any.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/as-iterable.html">asIterable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asIterable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Create an iterable that returns all entries of this table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/as-sequence.html">asSequence</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asSequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence/index.html"><span class="identifier">Sequence</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Create a sequence that returns all entries of this table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/as-synchronized.html">asSynchronized</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asSynchronized</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a wrapper for this table which synchronize all access to the table making it thread safe</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/contains.html">contains</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">contains</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$contains(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.contains.R, com.github.jcornaz.kable.util.contains.C, kotlin.Any)), kotlin.Pair((com.github.jcornaz.kable.util.contains.R, com.github.jcornaz.kable.util.contains.C)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Return true if, and only if, the table contains the given row-column key pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/count.html">count</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">count</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the number of entries in this map</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">count</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$count(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.count.R, com.github.jcornaz.kable.util.count.C, com.github.jcornaz.kable.util.count.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.count.R, com.github.jcornaz.kable.util.count.C, com.github.jcornaz.kable.util.count.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the number of entries matching the given <a href="../../com.github.jcornaz.kable.util/count.html#com.github.jcornaz.kable.util$count(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.count.R, com.github.jcornaz.kable.util.count.C, com.github.jcornaz.kable.util.count.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.count.R, com.github.jcornaz.kable.util.count.C, com.github.jcornaz.kable.util.count.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/filter.html">filter</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filter</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$filter(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filter.R, com.github.jcornaz.kable.util.filter.C, com.github.jcornaz.kable.util.filter.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.filter.R, com.github.jcornaz.kable.util.filter.C, com.github.jcornaz.kable.util.filter.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table containing all entries matching the given <a href="../../com.github.jcornaz.kable.util/filter.html#com.github.jcornaz.kable.util$filter(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filter.R, com.github.jcornaz.kable.util.filter.C, com.github.jcornaz.kable.util.filter.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.filter.R, com.github.jcornaz.kable.util.filter.C, com.github.jcornaz.kable.util.filter.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/filter-columns.html">filterColumns</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterColumns</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$filterColumns(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterColumns.R, com.github.jcornaz.kable.util.filterColumns.C, com.github.jcornaz.kable.util.filterColumns.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterColumns.C, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">C</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table containing all entries on columns matching the given <a href="../../com.github.jcornaz.kable.util/filter-columns.html#com.github.jcornaz.kable.util$filterColumns(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterColumns.R, com.github.jcornaz.kable.util.filterColumns.C, com.github.jcornaz.kable.util.filterColumns.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterColumns.C, kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/filter-not.html">filterNot</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterNot</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$filterNot(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterNot.R, com.github.jcornaz.kable.util.filterNot.C, com.github.jcornaz.kable.util.filterNot.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.filterNot.R, com.github.jcornaz.kable.util.filterNot.C, com.github.jcornaz.kable.util.filterNot.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table containing all entries not matching the given <a href="../../com.github.jcornaz.kable.util/filter-not.html#com.github.jcornaz.kable.util$filterNot(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterNot.R, com.github.jcornaz.kable.util.filterNot.C, com.github.jcornaz.kable.util.filterNot.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.filterNot.R, com.github.jcornaz.kable.util.filterNot.C, com.github.jcornaz.kable.util.filterNot.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/filter-rows.html">filterRows</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterRows</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$filterRows(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterRows.R, com.github.jcornaz.kable.util.filterRows.C, com.github.jcornaz.kable.util.filterRows.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterRows.R, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table containing all entries on rows matching the given <a href="../../com.github.jcornaz.kable.util/filter-rows.html#com.github.jcornaz.kable.util$filterRows(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterRows.R, com.github.jcornaz.kable.util.filterRows.C, com.github.jcornaz.kable.util.filterRows.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterRows.R, kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/filter-values.html">filterValues</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterValues</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$filterValues(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterValues.R, com.github.jcornaz.kable.util.filterValues.C, com.github.jcornaz.kable.util.filterValues.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterValues.V, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">V</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table containing all entries with a values matching the given <a href="../../com.github.jcornaz.kable.util/filter-values.html#com.github.jcornaz.kable.util$filterValues(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.filterValues.R, com.github.jcornaz.kable.util.filterValues.C, com.github.jcornaz.kable.util.filterValues.V)), kotlin.Function1((com.github.jcornaz.kable.util.filterValues.V, kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/flat-map.html">flatMap</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">flatMap</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$flatMap(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.flatMap.R, com.github.jcornaz.kable.util.flatMap.C, com.github.jcornaz.kable.util.flatMap.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.flatMap.R, com.github.jcornaz.kable.util.flatMap.C, com.github.jcornaz.kable.util.flatMap.V)), kotlin.collections.Iterable((com.github.jcornaz.kable.util.flatMap.T)))))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Returns a list containing the results of applying the given <a href="../../com.github.jcornaz.kable.util/flat-map.html#com.github.jcornaz.kable.util$flatMap(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.flatMap.R, com.github.jcornaz.kable.util.flatMap.C, com.github.jcornaz.kable.util.flatMap.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.flatMap.R, com.github.jcornaz.kable.util.flatMap.C, com.github.jcornaz.kable.util.flatMap.V)), kotlin.collections.Iterable((com.github.jcornaz.kable.util.flatMap.T)))))/transform">transform</a> function to each entry in the original table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/for-each.html">forEach</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">forEach</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$forEach(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.forEach.R, com.github.jcornaz.kable.util.forEach.C, com.github.jcornaz.kable.util.forEach.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.forEach.R, com.github.jcornaz.kable.util.forEach.C, com.github.jcornaz.kable.util.forEach.V)), kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Performs the given <a href="../../com.github.jcornaz.kable.util/for-each.html#com.github.jcornaz.kable.util$forEach(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.forEach.R, com.github.jcornaz.kable.util.forEach.C, com.github.jcornaz.kable.util.forEach.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.forEach.R, com.github.jcornaz.kable.util.forEach.C, com.github.jcornaz.kable.util.forEach.V)), kotlin.Unit)))/action">action</a> on each entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$get(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.get.R, com.github.jcornaz.kable.util.get.C, com.github.jcornaz.kable.util.get.V)), com.github.jcornaz.kable.util.get.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return all the values of the row mapped by column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/map.html">map</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$map(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.map.R, com.github.jcornaz.kable.util.map.C, com.github.jcornaz.kable.util.map.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.map.R, com.github.jcornaz.kable.util.map.C, com.github.jcornaz.kable.util.map.V)), com.github.jcornaz.kable.util.map.T)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Returns a list containing the results of applying the given <a href="../../com.github.jcornaz.kable.util/map.html#com.github.jcornaz.kable.util$map(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.map.R, com.github.jcornaz.kable.util.map.C, com.github.jcornaz.kable.util.map.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.map.R, com.github.jcornaz.kable.util.map.C, com.github.jcornaz.kable.util.map.V)), com.github.jcornaz.kable.util.map.T)))/transform">transform</a> function to each entry in the original table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/map-columns.html">mapColumns</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mapColumns</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$mapColumns(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapColumns.R, com.github.jcornaz.kable.util.mapColumns.C, com.github.jcornaz.kable.util.mapColumns.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapColumns.R, com.github.jcornaz.kable.util.mapColumns.C, com.github.jcornaz.kable.util.mapColumns.V)), com.github.jcornaz.kable.util.mapColumns.T)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table with entries having the columns obtained by applying the <a href="../../com.github.jcornaz.kable.util/map-columns.html#com.github.jcornaz.kable.util$mapColumns(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapColumns.R, com.github.jcornaz.kable.util.mapColumns.C, com.github.jcornaz.kable.util.mapColumns.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapColumns.R, com.github.jcornaz.kable.util.mapColumns.C, com.github.jcornaz.kable.util.mapColumns.V)), com.github.jcornaz.kable.util.mapColumns.T)))/transform">transform</a> function to each entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/map-not-null.html">mapNotNull</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mapNotNull</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$mapNotNull(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapNotNull.R, com.github.jcornaz.kable.util.mapNotNull.C, com.github.jcornaz.kable.util.mapNotNull.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapNotNull.R, com.github.jcornaz.kable.util.mapNotNull.C, com.github.jcornaz.kable.util.mapNotNull.V)), com.github.jcornaz.kable.util.mapNotNull.T)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Returns a list containing only the non-null results of applying the given <a href="../../com.github.jcornaz.kable.util/map-not-null.html#com.github.jcornaz.kable.util$mapNotNull(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapNotNull.R, com.github.jcornaz.kable.util.mapNotNull.C, com.github.jcornaz.kable.util.mapNotNull.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapNotNull.R, com.github.jcornaz.kable.util.mapNotNull.C, com.github.jcornaz.kable.util.mapNotNull.V)), com.github.jcornaz.kable.util.mapNotNull.T)))/transform">transform</a> function to each entry in the original table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/map-rows.html">mapRows</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mapRows</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$mapRows(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapRows.R, com.github.jcornaz.kable.util.mapRows.C, com.github.jcornaz.kable.util.mapRows.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapRows.R, com.github.jcornaz.kable.util.mapRows.C, com.github.jcornaz.kable.util.mapRows.V)), com.github.jcornaz.kable.util.mapRows.T)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table with entries having the rows obtained by applying the <a href="../../com.github.jcornaz.kable.util/map-rows.html#com.github.jcornaz.kable.util$mapRows(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapRows.R, com.github.jcornaz.kable.util.mapRows.C, com.github.jcornaz.kable.util.mapRows.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapRows.R, com.github.jcornaz.kable.util.mapRows.C, com.github.jcornaz.kable.util.mapRows.V)), com.github.jcornaz.kable.util.mapRows.T)))/transform">transform</a> function to each entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/map-values.html">mapValues</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mapValues</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$mapValues(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapValues.R, com.github.jcornaz.kable.util.mapValues.C, com.github.jcornaz.kable.util.mapValues.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapValues.R, com.github.jcornaz.kable.util.mapValues.C, com.github.jcornaz.kable.util.mapValues.V)), com.github.jcornaz.kable.util.mapValues.T)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>Returns a new table with entries having the values obtained by applying the <a href="../../com.github.jcornaz.kable.util/map-values.html#com.github.jcornaz.kable.util$mapValues(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.mapValues.R, com.github.jcornaz.kable.util.mapValues.C, com.github.jcornaz.kable.util.mapValues.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.mapValues.R, com.github.jcornaz.kable.util.mapValues.C, com.github.jcornaz.kable.util.mapValues.V)), com.github.jcornaz.kable.util.mapValues.T)))/transform">transform</a> function to each entry</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/max-by.html">maxBy</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html"><span class="identifier">Comparable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">maxBy</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$maxBy(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.maxBy.R, com.github.jcornaz.kable.util.maxBy.C, com.github.jcornaz.kable.util.maxBy.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.maxBy.R, com.github.jcornaz.kable.util.maxBy.C, com.github.jcornaz.kable.util.maxBy.V)), com.github.jcornaz.kable.util.maxBy.T)))/selector">selector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>Returns the first entry yielding the largest value of the given function or <code>null</code> if there are no entries</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/max-with.html">maxWith</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">maxWith</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$maxWith(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.maxWith.R, com.github.jcornaz.kable.util.maxWith.C, com.github.jcornaz.kable.util.maxWith.V)), java.util.Comparator((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.maxWith.R, com.github.jcornaz.kable.util.maxWith.C, com.github.jcornaz.kable.util.maxWith.V)))))/comparator">comparator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>Returns the first entry having the largest value according to the provided <a href="../../com.github.jcornaz.kable.util/max-with.html#com.github.jcornaz.kable.util$maxWith(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.maxWith.R, com.github.jcornaz.kable.util.maxWith.C, com.github.jcornaz.kable.util.maxWith.V)), java.util.Comparator((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.maxWith.R, com.github.jcornaz.kable.util.maxWith.C, com.github.jcornaz.kable.util.maxWith.V)))))/comparator">comparator</a> or <code>null</code> if there are no entries</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/min-by.html">minBy</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html"><span class="identifier">Comparable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minBy</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$minBy(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minBy.R, com.github.jcornaz.kable.util.minBy.C, com.github.jcornaz.kable.util.minBy.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.minBy.R, com.github.jcornaz.kable.util.minBy.C, com.github.jcornaz.kable.util.minBy.V)), com.github.jcornaz.kable.util.minBy.T)))/selector">selector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>Returns the first entry yielding the smallest value of the given function or <code>null</code> if there are no entries</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/min-with.html">minWith</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minWith</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$minWith(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minWith.R, com.github.jcornaz.kable.util.minWith.C, com.github.jcornaz.kable.util.minWith.V)), java.util.Comparator((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.minWith.R, com.github.jcornaz.kable.util.minWith.C, com.github.jcornaz.kable.util.minWith.V)))))/comparator">comparator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>Returns the first entry having the smallest value according to the provided <a href="../../com.github.jcornaz.kable.util/min-with.html#com.github.jcornaz.kable.util$minWith(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minWith.R, com.github.jcornaz.kable.util.minWith.C, com.github.jcornaz.kable.util.minWith.V)), java.util.Comparator((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.minWith.R, com.github.jcornaz.kable.util.minWith.C, com.github.jcornaz.kable.util.minWith.V)))))/comparator">comparator</a> or <code>null</code> if there are no entries</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/minus.html">minus</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minus</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$minus(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minus.R, com.github.jcornaz.kable.util.minus.C, com.github.jcornaz.kable.util.minus.V)), kotlin.Pair((com.github.jcornaz.kable.util.minus.R, com.github.jcornaz.kable.util.minus.C)))/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the row-column pair</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/minus-column.html">minusColumn</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minusColumn</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$minusColumn(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minusColumn.R, com.github.jcornaz.kable.util.minusColumn.C, com.github.jcornaz.kable.util.minusColumn.V)), com.github.jcornaz.kable.util.minusColumn.C)/column">column</span><span class="symbol">:</span>&nbsp;<span class="identifier">C</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the given column</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/minus-row.html">minusRow</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minusRow</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$minusRow(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.minusRow.R, com.github.jcornaz.kable.util.minusRow.C, com.github.jcornaz.kable.util.minusRow.V)), com.github.jcornaz.kable.util.minusRow.R)/row">row</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries except the given row</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/none.html">none</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">none</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns <code>true</code> if the map has no entries</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">none</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$none(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.none.R, com.github.jcornaz.kable.util.none.C, com.github.jcornaz.kable.util.none.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.none.R, com.github.jcornaz.kable.util.none.C, com.github.jcornaz.kable.util.none.V)), kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns <code>true</code> if no entry match the given <a href="../../com.github.jcornaz.kable.util/none.html#com.github.jcornaz.kable.util$none(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.none.R, com.github.jcornaz.kable.util.none.C, com.github.jcornaz.kable.util.none.V)), kotlin.Function1((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.none.R, com.github.jcornaz.kable.util.none.C, com.github.jcornaz.kable.util.none.V)), kotlin.Boolean)))/predicate">predicate</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/plus.html">plus</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$plus(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)), com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)))/entry">entry</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus the given new entry</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$plus(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)), kotlin.collections.Collection((com.github.jcornaz.kable.Table.Entry((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)))))/entries">entries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="../../com.github.jcornaz.kable/-table/-entry/index.html"><span class="identifier">Entry</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus the given new entries</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="com.github.jcornaz.kable.util$plus(com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)), com.github.jcornaz.kable.Table((com.github.jcornaz.kable.util.plus.R, com.github.jcornaz.kable.util.plus.C, com.github.jcornaz.kable.util.plus.V)))/table">table</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a new table with the same entries plus entries of the given table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/to-map.html">toMap</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toMap</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html"><span class="identifier">Pair</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a map representation of the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/to-mutable-table.html">toMutableTable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toMutableTable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Create a mutable copy of this table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/to-synchronized.html">toSynchronized</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toSynchronized</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-mutable-table/index.html"><span class="identifier">MutableTable</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Return a thread safe copy of the table</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../com.github.jcornaz.kable.util/to-table.html">toTable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">, </span><span class="identifier">C</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toTable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.github.jcornaz.kable/-table/index.html"><span class="identifier">Table</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">C</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Create a copy of this table</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
