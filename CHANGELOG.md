@@ -1,4 +1,6 @@
 # Change log
+## 2.1-SNAPSHOT (unreleased)
+
 ## 2.0.0 (2017-09-20)
 ### New features
 * `get` operator for rows (`table[row]`). It also makes possible to retrieve a value with `table[row][col]` which is equivalent to `table[row, col]`.
