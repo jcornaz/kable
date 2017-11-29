@@ -63,8 +63,8 @@ class ThreeMapTable<R, C, V>(entries: Iterable<Table.Entry<R, C, V>> = emptyList
 
     override fun set(row: R, column: C, value: V) {
         map[row to column] = value
-        rowsMap.computeIfAbsent(row) { mutableMapOf() }.put(column, value)
-        columnsMap.computeIfAbsent(column) { mutableMapOf() }.put(row, value)
+        rowsMap.getOrPut(row) { mutableMapOf() }.put(column, value)
+        columnsMap.getOrPut(column) { mutableMapOf() }.put(row, value)
     }
 
     override fun setRow(row: R, entries: Map<C, V>) {

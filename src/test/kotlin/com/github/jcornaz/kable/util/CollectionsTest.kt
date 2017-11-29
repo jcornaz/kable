@@ -1,7 +1,6 @@
 package com.github.jcornaz.kable.util
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import kotlin.test.*
 
 class CollectionsTest {
 

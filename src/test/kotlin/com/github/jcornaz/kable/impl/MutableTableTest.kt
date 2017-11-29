@@ -5,8 +5,7 @@ import com.github.jcornaz.kable.Table
 import com.github.jcornaz.kable.util.TableTest
 import com.github.jcornaz.kable.util.entry
 import com.github.jcornaz.kable.util.tableOf
-import org.junit.Assert
-import org.junit.Test
+import kotlin.test.*
 
 abstract class MutableTableTest : TableTest() {
 
@@ -24,7 +23,7 @@ abstract class MutableTableTest : TableTest() {
         table['C', 4] = "something"
         table['D', 8] = "anything"
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
                 entry('A', 4, "new"),
@@ -45,7 +44,7 @@ abstract class MutableTableTest : TableTest() {
         table.setRow('C', mapOf(7 to "seven"))
         table.setRow('X', emptyMap()) // should have no effect
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 1, "test"),
                 entry('B', 42, "the answer"),
@@ -66,7 +65,7 @@ abstract class MutableTableTest : TableTest() {
         table.setColumn(5, mapOf('A' to "yellow"))
         table.setColumn(42, emptyMap()) // should have no effect
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('A', 4, "bye"),
                 entry('B', 4, "world"),
                 entry('X', 1, "axe1"),
@@ -85,7 +84,7 @@ abstract class MutableTableTest : TableTest() {
 
         table.remove('B', 1)
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('A', 1, "hello"),
                 entry('B', 4, "world"),
                 entry('A', 4, "bye")
@@ -102,7 +101,7 @@ abstract class MutableTableTest : TableTest() {
 
         table.removeRow('A')
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('B', 4, "world")
         ), table)
     }
@@ -117,7 +116,7 @@ abstract class MutableTableTest : TableTest() {
 
         table.removeColumn(4)
 
-        Assert.assertEquals(tableOf(
+        assertEquals(tableOf(
                 entry('A', 1, "hello")
         ), table)
     }
@@ -132,6 +131,6 @@ abstract class MutableTableTest : TableTest() {
 
         table.clear()
 
-        Assert.assertTrue(table.isEmpty())
+        assertTrue(table.isEmpty())
     }
 }

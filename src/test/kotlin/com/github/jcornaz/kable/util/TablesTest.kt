@@ -1,9 +1,7 @@
 package com.github.jcornaz.kable.util
 
 import com.github.jcornaz.kable.Table
-import org.junit.Assert.*
-import org.junit.Test
-import java.util.*
+import kotlin.test.*
 
 class TablesTest {
 

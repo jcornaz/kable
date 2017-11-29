@@ -1,9 +1,7 @@
 package com.github.jcornaz.kable.impl
 
 import com.github.jcornaz.kable.util.entry
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
-import org.junit.Test
+import kotlin.test.*
 
 class SimpleEntryTest {
 

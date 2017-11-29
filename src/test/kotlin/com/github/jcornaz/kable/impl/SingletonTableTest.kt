@@ -4,8 +4,7 @@ import com.github.jcornaz.kable.util.emptyTable
 import com.github.jcornaz.kable.util.entry
 import com.github.jcornaz.kable.util.minus
 import com.github.jcornaz.kable.util.tableOf
-import org.junit.Assert.*
-import org.junit.Test
+import kotlin.test.*
 
 class SingletonTableTest {
 

@@ -1,0 +1,26 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.0'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
+    }
+}
+
+apply plugin: 'kotlin-platform-jvm'
+apply plugin: 'com.github.ben-manes.versions'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
+    expectedBy project(':')
+
+    testCompile 'org.jetbrains.kotlin:kotlin-test-junit'
+}

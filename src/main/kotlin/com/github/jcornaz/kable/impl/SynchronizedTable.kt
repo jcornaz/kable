@@ -28,86 +28,53 @@ import com.github.jcornaz.kable.Table
 class SynchronizedTable<R, C, V>(private val backedTable: MutableTable<R, C, V>) : MutableTable<R, C, V> {
 
     override val size: Int
-        @Synchronized get() = backedTable.size
+        get() = synchronized(this) { backedTable.size }
 
     override val rows: Set<R>
-        @Synchronized get() = backedTable.rows
+        get() = synchronized(this) { backedTable.rows }
 
     override val columns: Set<C>
-        @Synchronized get() = backedTable.columns
+        get() = synchronized(this) { backedTable.columns }
 
     override val values: Collection<V>
-        @Synchronized get() = backedTable.values
+        get() = synchronized(this) { backedTable.values }
 
     override val entries: Set<Table.Entry<R, C, V>>
-        @Synchronized get() = backedTable.entries
+        get() = synchronized(this) { backedTable.entries }
 
-    @Synchronized
-    override fun set(row: R, column: C, value: V) = backedTable.set(row, column, value)
+    override fun set(row: R, column: C, value: V) = synchronized(this) { backedTable.set(row, column, value) }
 
-    @Synchronized
-    override fun put(entry: Table.Entry<R, C, V>) = backedTable.put(entry)
+    override fun put(entry: Table.Entry<R, C, V>) = synchronized(this) { backedTable.put(entry) }
+    override fun putAll(entries: Iterable<Table.Entry<R, C, V>>) = synchronized(this) { backedTable.putAll(entries) }
 
-    @Synchronized
-    override fun putAll(entries: Iterable<Table.Entry<R, C, V>>) = backedTable.putAll(entries)
+    override fun setRow(row: R, entries: Map<C, V>) = synchronized(this) { backedTable.setRow(row, entries) }
+    override fun setColumn(column: C, entries: Map<R, V>) = synchronized(this) { backedTable.setColumn(column, entries) }
 
-    @Synchronized
-    override fun setRow(row: R, entries: Map<C, V>) = backedTable.setRow(row, entries)
+    override fun remove(row: R, column: C) = synchronized(this) { backedTable.remove(row, column) }
+    override fun removeRow(row: R) = synchronized(this) { backedTable.removeRow(row) }
+    override fun removeColumn(column: C) = synchronized(this) { backedTable.removeColumn(column) }
+    override fun remove(key: Pair<R, C>) = synchronized(this) { backedTable.remove(key) }
+    override fun removeAll(keys: Iterable<Pair<R, C>>) = synchronized(this) { backedTable.removeAll(keys) }
 
-    @Synchronized
-    override fun setColumn(column: C, entries: Map<R, V>) = backedTable.setColumn(column, entries)
 
-    @Synchronized
-    override fun remove(row: R, column: C) = backedTable.remove(row, column)
+    override fun clear() = synchronized(this) { backedTable.clear() }
 
-    @Synchronized
-    override fun removeRow(row: R) = backedTable.removeRow(row)
+    override fun isEmpty() = synchronized(this) { backedTable.isEmpty() }
 
-    @Synchronized
-    override fun removeColumn(column: C) = backedTable.removeColumn(column)
+    override fun containsRow(row: R) = synchronized(this) { backedTable.containsRow(row) }
+    override fun containsColumn(column: C) = synchronized(this) { backedTable.containsColumn(column) }
+    override fun containsValue(value: V) = synchronized(this) { backedTable.containsValue(value) }
+    override fun contains(row: R, column: C) = synchronized(this) { backedTable.contains(row, column) }
 
-    @Synchronized
-    override fun remove(key: Pair<R, C>) = backedTable.remove(key)
+    override fun getRow(row: R) = synchronized(this) { backedTable.getRow(row) }
+    override fun getColumn(column: C) = synchronized(this) { backedTable.getColumn(column) }
 
-    @Synchronized
-    override fun removeAll(keys: Iterable<Pair<R, C>>) = backedTable.removeAll(keys)
+    override fun get(row: R, column: C) = synchronized(this) { backedTable[row, column] }
 
-    @Synchronized
-    override fun clear() = backedTable.clear()
+    override fun iterator() = synchronized(this) { backedTable.iterator() }
 
-    @Synchronized
-    override fun isEmpty() = backedTable.isEmpty()
+    override fun hashCode() = synchronized(this) { backedTable.hashCode() }
+    override fun equals(other: Any?) = synchronized(this) { backedTable == other }
 
-    @Synchronized
-    override fun containsRow(row: R) = backedTable.containsRow(row)
-
-    @Synchronized
-    override fun containsColumn(column: C) = backedTable.containsColumn(column)
-
-    @Synchronized
-    override fun containsValue(value: V) = backedTable.containsValue(value)
-
-    @Synchronized
-    override fun contains(row: R, column: C) = backedTable.contains(row, column)
-
-    @Synchronized
-    override fun getRow(row: R) = backedTable.getRow(row)
-
-    @Synchronized
-    override fun getColumn(column: C) = backedTable.getColumn(column)
-
-    @Synchronized
-    override fun get(row: R, column: C) = backedTable[row, column]
-
-    @Synchronized
-    override fun iterator() = backedTable.iterator()
-
-    @Synchronized
-    override fun hashCode() = backedTable.hashCode()
-
-    @Synchronized
-    override fun equals(other: Any?) = backedTable == other
-
-    @Synchronized
-    override fun toString() = backedTable.toString()
+    override fun toString() = synchronized(this) { backedTable.toString() }
 }

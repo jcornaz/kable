@@ -2,8 +2,7 @@ package com.github.jcornaz.kable.util
 
 import com.github.jcornaz.kable.Table
 import com.github.jcornaz.kable.impl.BiKeyMap
-import org.junit.Assert.*
-import org.junit.Test
+import kotlin.test.*
 
 abstract class TableTest {
 
@@ -64,8 +63,8 @@ abstract class TableTest {
         assertEquals(mapOf('A' to "bye", 'B' to "world"), table.getColumn(4))
         assertEquals("hello", table['A', 1])
 
-        assertEquals(emptyMap<Int, String>(), table.getRow('Z'))
-        assertEquals(emptyMap<Int, String>(), table.getColumn(0))
+        assertEquals(emptyMap(), table.getRow('Z'))
+        assertEquals(emptyMap(), table.getColumn(0))
         assertNull(table['B', 1])
     }
 

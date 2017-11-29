@@ -1,2 +1,4 @@
 rootProject.name = 'kable'
 
+include 'jvm-test'
+include 'js-test'

@@ -4,14 +4,13 @@ import com.github.jcornaz.kable.util.emptyTable
 import com.github.jcornaz.kable.util.entry
 import com.github.jcornaz.kable.util.minus
 import com.github.jcornaz.kable.util.tableOf
-import org.junit.Assert.*
-import org.junit.Test
+import kotlin.test.*
 
 class EmptyTableTest {
 
     @Test fun testSingleton() {
         assertSame(emptyTable<Any, Any, Any>(), emptyTable<Any, Any, Any>())
-        assertSame(emptyTable<Char, Int, String>(), emptyTable<Double, String, Boolean>())
+        assertSame<Any>(emptyTable<Char, Int, String>(), emptyTable<Double, String, Boolean>())
     }
 
     @Test fun testIsEmpty() {

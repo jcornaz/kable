@@ -17,8 +17,6 @@
  * along with Kable.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@file:JvmName("Maps")
-
 package com.github.jcornaz.kable.util
 
 import com.github.jcornaz.kable.Table

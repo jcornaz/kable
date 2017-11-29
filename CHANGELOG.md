@@ -1,5 +1,6 @@
 # Change log
 ## 2.1-SNAPSHOT (unreleased)
+Add support for Javascript
 
 ## 2.0.0 (2017-09-20)
 ### New features
