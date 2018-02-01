@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.jcornaz:kable:2.0.0'
+    compile 'com.github.jcornaz:kable:v2.0.0'
 }
 ```
 
