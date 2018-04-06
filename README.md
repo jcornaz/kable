@@ -1,12 +1,42 @@
 # Kable
-[![LGPLv3](https://img.shields.io/badge/license-LGPLv3-blue.svg)](https://raw.githubusercontent.com/jcornaz/kable/master/LICENSE)
+[![LGPLv3](https://img.shields.io/badge/license-LGPL--3.0-blue.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-discontinued-lightgray.svg)](https://gist.githubusercontent.com/jcornaz/46736c3d1f21b4c929bd97549b7406b2/raw/ProjectStatusFlow)
 [![JitPack](https://jitpack.io/v/jcornaz/kable.svg)](https://jitpack.io/#jcornaz/kable)
 [![Build Status](https://travis-ci.org/jcornaz/kable.svg?branch=master)](https://travis-ci.org/jcornaz/kable)
-[![Code quality](https://codebeat.co/badges/5c6f587d-8348-42c0-9bb0-7067e548841b)](https://codebeat.co/projects/github-com-slimaku-kable)
-[![Issues](https://img.shields.io/github/issues/jcornaz/kable.svg)](https://github.com/jcornaz/kable/issues)
-[![Pull requests](https://img.shields.io/github/issues-pr/jcornaz/kable.svg)](https://github.com/jcornaz/kable/pulls)
 
-Bi dimensional maps for kotlin (and java)
+Bi dimensional maps for kotlin
+
+## Status
+This project is discontinued. It is no longer maintained and no support will be provided.
+
+The reason, is that it easy to deal with table data structure with plain kotlin, without the need of a third party library. Eventually one could simply create type aliases and extensions function for `Map` and `MutableMap`.
+
+Example:
+```kotlin
+typealias Table<R, C, V> = Map<R, Map<C, V>>
+typealias MutableTable<R, C, V> = MutableMap<R, MutableMap<C, V>>
+
+operator fun <R, C, V> Table<in R, in C, V>.get(row: R, column: C): V? =
+    get(row)?.get(column)
+
+operator fun <R, C, V> MutableTable<in R, in C, in V>.set(row: R, column: C, value: V) =
+    getOrPut(row) { mutableMapOf() }.put(column, value)
+
+fun <R, C, V> Table<in R, C, V>.getRow(row: R): Map<C, V> =
+    get(row).orEmpty()
+
+fun <R, C, V> Table<R, in C, V>.getColumn(column: C): Map<R, V> {
+  val result = mutableMapOf<R, V>()
+
+  forEach { (rowKey, row) ->
+    row[column]?.let { result[rowKey] = it }
+  }
+
+  return result
+}
+```
+
+And even this code doesn't really belongs to a third party library, because in practice, the type aliases and the extension functions might have business oriented naming, making the code even clearer when used.
 
 ## Synopsis
 The goal is to provide a "table" data structure. A table is almost like a map in java where each entry would have two keys the "row" and the "column".
@@ -107,20 +137,6 @@ You can also [use maven, sbt or leiningen](https://jitpack.io/#jcornaz/kable/v2.
 [KDoc](https://jcornaz.github.io/kable/doc/2.0/kable/)
 
 ## Test
-Tests are written in [src/test](https://github.com/jcornaz/kable/tree/master/src/test/kotlin/com/github/jcornaz/kable)
+Tests are written in [src/test](src/test/kotlin/com/github/jcornaz/kable)
 
 You can run them from the root directory with : `./gradlew test`
-
-## License
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-A copy of the GNU General Public License is in the file "LICENSE" at the root of the project.
-If you don't find it, see <http://www.gnu.org/licenses/>.
